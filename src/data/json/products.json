@@ -3,7 +3,7 @@
     "nome": "Brother MFC-9330CDW",
     "preco": 2500.0,
     "descricao": "Multifuncional semi-nova, laser, Colorida, wi-fi",
-    "imagemSrc": "/images/imp1.jpg",
+    "imagemSrc": "imp1",
     "headFeatures": [
       "Até 23 páginas por minuto",
       "Conectividade sem Fio - Wirelless",
@@ -48,7 +48,7 @@
     "nome": "Brother Mfc-9460CDN",
     "preco": 2000.0,
     "descricao": "Multifuncional semi-nova, laser, Colorida",
-    "imagemSrc": "/images/imp2.jpg",
+    "imagemSrc": "imp2",
     "headFeatures": [
       "Até 18 páginas por minuto",
       "Conectividade sem Fio - Wirelless",
@@ -99,7 +99,7 @@
     "nome": "HP LaserJet Color CP1215",
     "preco": 800.0,
     "descricao": "Impressora semi-nova, laser, Colorida",
-    "imagemSrc": "/images/imp3.jpg",
+    "imagemSrc": "imp3",
     "headFeatures": [
       "Cores vibrantes",
       "Alta qualidade incrivelmente fácil e mais acessível",
@@ -144,7 +144,7 @@
     "nome": "Brother DCP-8157DN",
     "preco": 1000.0,
     "descricao": "Multifuncional, semi-nova, laser",
-    "imagemSrc": "/images/imp4.jpg",
+    "imagemSrc": "imp4",
     "headFeatures": [
       "Multifuncional (impressão e scanner)",
       "Semi-nova (recondicionada)",

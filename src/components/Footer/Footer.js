@@ -10,7 +10,7 @@ function Footer() {
                         <div className="social-links">
                             <a href="https://wa.me/5532984195001"><i className="fab fa-whatsapp"></i></a>
                             <a href="https://www.instagram.com/telemaqcopiadoras/"><i className="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/@telemaq3693"><i className="fa-brands fa-youtube"></i></a>
+                            <a href="https://www.youtube.com/@TelemaqCopiadoras"><i className="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
                     <div className="footer-links">
@@ -26,11 +26,11 @@ function Footer() {
                     <div className="footer-links">
                         <h3>Serviços</h3>
                         <ul>
-                            <li><a href="#">Locação de Impressoras</a></li>
-                            <li><a href="#">Locação de Multifuncionais</a></li>
-                            <li><a href="#">Manutenção Preventiva</a></li>
-                            <li><a href="#">Assistência Técnica</a></li>
-                            <li><a href="#">Consumíveis</a></li>
+                            <li>Locação de Impressoras</li>
+                            <li>Locação de Multifuncionais</li>
+                            <li>Manutenção Preventiva</li>
+                            <li>Assistência Técnica</li>
+                            <li>Consumíveis</li>
                         </ul>
                     </div>
                     <div className="footer-contact">

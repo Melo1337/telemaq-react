@@ -1,10 +1,6 @@
 import './Body.css';
-import whatsappImg from '../../img/whatsapp.png';
-import servicesImg1 from '../../img/colocando-papel.jpg';
-import servicesImg2 from '../../img/imp-tinta.jpg';
-import servicesImg3 from '../../img/entregando-papel.jpg';
-import aboutImg from '../../img/sobre-nos.jpg';
-import Market from '../Market/market'
+import Market from '../Market/Market'
+import ButtomWhatsapp from '../ButtomWhatsapp/ButtomWhatsapp.js'
 
 function Body() {
     return (
@@ -13,12 +9,7 @@ function Body() {
                 <div className="container">
                     <h2>Soluções em Locação de Impressoras e Multifuncionais</h2>
                     <p>Oferecemos as melhores soluções em equipamentos de impressão para sua empresa com planos flexíveis e suporte especializado.</p>
-                    <a href="https://wa.me/5532984195001?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20loca%C3%A7%C3%A3o!">
-                        <div className="btn whatsapp">
-                            <img src={whatsappImg} alt="whatsapp-icon" srcSet="" />
-                            <h4>Solicitar Orçamento</h4>
-                        </div>
-                    </a>
+                    <ButtomWhatsapp texto="Solicitar Orçamento" link="Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20loca%C3%A7%C3%A3o!" />
                 </div>
             </section>
 
@@ -27,21 +18,21 @@ function Body() {
                     <h2 className="section-title">Nossos Serviços</h2>
                     <div className="services-grid">
                         <div className="service-card">
-                            <img src={servicesImg1} alt="Locação de Impressoras" />
+                            <img src={'/img/services1.jpg'} alt="Locação de Impressoras" />
                             <div className="service-content">
                                 <h3>Locação de Impressoras</h3>
                                 <p>Equipamentos de alta performance para todos os volumes de impressão, desde pequenas empresas até grandes corporações.</p>
                             </div>
                         </div>
                         <div className="service-card">
-                            <img src={servicesImg2} alt="Locação de Multifuncionais" />
+                            <img src={'/img/services2.jpg'} alt="Locação de Multifuncionais" />
                             <div className="service-content">
                                 <h3>Locação de Multifuncionais</h3>
                                 <p>Equipamentos completos que imprimem, digitalizam, copiam e enviam fax, otimizando seu espaço e produtividade.</p>
                             </div>
                         </div>
                         <div className="service-card">
-                            <img src={servicesImg3} alt="Suporte Técnico" />
+                            <img src={'/img/services3.jpg'} alt="Suporte Técnico" />
                             <div className="service-content">
                                 <h3>Suporte Técnico</h3>
                                 <p>Assistência técnica especializada e preventiva para garantir o perfeito funcionamento dos equipamentos.</p>
@@ -54,7 +45,7 @@ function Body() {
             <section id="sobre" className="about-section">
                 <div className="container about">
                     <div className="about-img">
-                        <img src={aboutImg} alt="Sobre a Telemaq Copiadoras" />
+                        <img src={'/img/sobre-nos.jpg'} alt="Sobre a Telemaq Copiadoras" />
                     </div>
                     <div className="about-content">
                         <h2>Sobre Nós</h2>
@@ -92,7 +83,7 @@ function Body() {
                 </div>
             </section>
 
-            <section id="market">
+            <section id="produtos">
                 <div className="container">
                     <h2 className="section-title">Impressoras a venda</h2>
                     <div className="printers">

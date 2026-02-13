@@ -1,0 +1,55 @@
+.printers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;  
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.printer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 40px;
+    width: 280px;
+    height: 350px;
+}
+
+.printer > p {
+    white-space: normal; 
+}
+
+.printer > * {
+    width: 100%;
+}
+
+.printer > img {
+    margin-top: 1rem;
+    width: 70%;
+}
+
+.printer > div {
+    width: 80%;
+    height: 2rem;
+} 
+
+.printer > div > h4 {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.printer > div > img {
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.buttons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons a .btn {
+    padding: 0.4rem;
+    background-color: #075E54;
+}
