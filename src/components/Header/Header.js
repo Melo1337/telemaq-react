@@ -22,7 +22,7 @@ function Header() {
             {location.pathname === '/' ? (
               <>
                 <li><a href="#home" onClick={closeMenu}>Início</a></li>
-                <li><a href="#servicos" onClick={closeMenu}>Serviços</a></li>
+                <li><a href="/Tutorials" onClick={closeMenu}>Tutoriais</a></li>
                 <li><a href="#sobre" onClick={closeMenu}>Sobre</a></li>
                 <li><a href="#vantagens" onClick={closeMenu}>Vantagens</a></li>
                 <li><a href="#produtos" onClick={closeMenu}>Produtos</a></li>
@@ -30,7 +30,7 @@ function Header() {
             ) : (
               <>
                 <li><Link to="/" onClick={closeMenu}>Início</Link></li>
-                <li><Link to="/" onClick={closeMenu}>Serviços</Link></li>
+                <li><Link to="/Tutorials" onClick={closeMenu}>Tutoriais</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Sobre</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Vantagens</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Produtos</Link></li>
