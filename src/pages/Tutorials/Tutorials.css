@@ -37,7 +37,8 @@ select {
 }
 
 iframe {
-    width: 860px;
+    width: 780px;
+    height: 460px;
     border-radius: 10px;
     border: 2px solid #adadad;
     background-color: #dfdfdf;

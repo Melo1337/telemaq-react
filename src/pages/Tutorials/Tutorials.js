@@ -5,7 +5,7 @@ import tutorial from './Tutorials.css'
 
 const Tutorials = () => {
 
-  function Tutorial2540() {
+  function tutorial2540() {
     return {
       "Imprimir configuração de rede": "https://www.youtube.com/embed/mVowccKhGMU?si=xPstGU8-uSBJHlaC",
       "Contador de páginas": "https://www.youtube.com/embed/yy-Ffu0yDps?si=aUn4d93waCAlryie",
@@ -16,17 +16,28 @@ const Tutorials = () => {
     }
   }
 
-  const listaImp2540 = ["DCP-L2540DW", "DCP-L2740DW", "DCP-L2500DW",]
+  function tutorial7065() {
+    return {
+      "Troca de cartucho de toner": "https://www.youtube.com/embed/wf884_XWfqo?si=OBELXfxci9ktJTiI"
+    }
+  }
 
-  listaImp2540.map((imp)=>{
-    console.log(`${imp}: ${Object.values(Tutorial2540())}`);
-  })
+  function tutorial8157() {
+    return {
+      "Erro de cilindro": "https://www.youtube.com/embed/fYDQFff76zw?si=U9x10DxX6XV6_LBh",
+      "Reset de cilindro": "https://www.youtube.com/embed/fYDQFff76zw?si=U9x10DxX6XV6_LBh",
+    }
+  }
 
   const dadosImpressoras = {
     Brother: {
-      "DCP-L2540DW": Tutorial2540(),
-      "DCP-L2740DW": Tutorial2540(),
-      "DCP-L2500DW": Tutorial2540(),
+      "DCP-L2540DW": tutorial2540(),
+      "DCP-L2540DN": tutorial2540(),
+      "DCP-L2520DW": tutorial2540(),
+      "DCP-8157": tutorial8157(),
+      "DCP-8112": tutorial8157(),
+      "DCP-8912": tutorial8157(),
+      "DCP-7065": tutorial7065(),
     },
   };
 
