@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/home/App';
 import Printer from './pages/Printer/Printer';
-import Tutorials from './pages/Tutorials/Tutorials';
+import Tutoriais from './pages/Tutoriais/Tutoriais';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +11,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/PrinterDetails" element={<Printer />} />
-      <Route path="/Tutorials" element={<Tutorials />} />
+      <Route path="/Tutoriais" element={<Tutoriais />} />
     </Routes>
   </BrowserRouter>
 );

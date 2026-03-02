@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
-import './Tutorials.css'
+import './Tutoriais.css'
 
-const Tutorials = () => {
+const Tutoriais = () => {
 
   function tutorial1212() {
     return {
@@ -79,7 +79,7 @@ const Tutorials = () => {
   const [modeloSelecionado, setModeloSelecionado] = useState("");
   const [tutorialSelecionado, setTutorialSelecionado] = useState("");
 
-  function gerarVideo(feature) {
+  function gerarVideo() {
 
     if (modeloSelecionado && marcaSelecionada && tutorialSelecionado) {
       const linkVideo = dadosImpressoras[marcaSelecionada][modeloSelecionado][tutorialSelecionado];
@@ -129,7 +129,7 @@ const Tutorials = () => {
         
         <div className='container-video'>
           <div className='video'>
-            {gerarVideo(tutorialSelecionado)}
+            {gerarVideo()}
           </div>
           <div className='tutorial-escrito'>
 
@@ -141,4 +141,4 @@ const Tutorials = () => {
   );
 };
 
-export default Tutorials;
+export default Tutoriais;
