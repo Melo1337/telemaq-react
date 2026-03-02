@@ -13,7 +13,7 @@ form {
     margin: 1rem 0rem 1rem 0rem;
 }
 
-section div {
+.container-tutorial div {
     display: flex;
     flex-direction: column;
     align-items: center;
