@@ -1,16 +1,16 @@
 .container-tutorial {
-    width: 1200px;
+    width: 90%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 1%;
 }
 
 form {
-    margin-top: 26px;
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-bottom: 26px;
+    margin: 1rem 0rem 1rem 0rem;
 }
 
 .seletores {
@@ -21,30 +21,57 @@ form {
 
 select {
     width: 200px;
-    padding: 4px;
     border-radius: 50px;
-    border: 2px solid #adadad;
-    background-color: #dfdfdf;  
-}
-
-.container-video {
-    margin-bottom: 30px;
-}
-
-.video {
-    display: flex;
-    justify-content: center;
-}
-
-iframe {
-    width: 780px;
-    height: 460px;
-    border-radius: 10px;
     border: 2px solid #adadad;
     background-color: #dfdfdf;
 }
 
+.video {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 1rem;
+    border: 2px solid #adadad;
+}
+
 .title {
     text-align: center;
-    margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+    iframe {
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+
+    form {
+        flex-direction: column;
+        align-items: center
+    }
+
+    .seletores {
+        width: 90%;
+        margin-left: 0px;
+    }
+
+    select {
+        width: 100%;    
+    }
+    .title {
+        font-size: 1.5rem;
+    }
 }
