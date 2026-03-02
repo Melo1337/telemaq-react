@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
-import tutorial from './Tutorials.css'
+import './Tutorials.css'
 
 const Tutorials = () => {
 
