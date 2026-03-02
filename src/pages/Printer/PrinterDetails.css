@@ -2,6 +2,9 @@
     padding: 1rem;
     width: 40rem;
     height: auto;
+    background-color: #ececec;
+    border-radius: 1rem;
+    margin: 1rem 0rem 1rem 0rem;
 }
 
 .return i {
@@ -14,6 +17,8 @@
 }
 
 .container-head {
+    background-color: #ffffff;
+    border-radius: 0.4rem;
     display: flex;
     justify-content: space-around;
 }
@@ -27,6 +32,7 @@
 }
 
 .container-head>img {
+    margin: 0.6rem 0rem 0.6rem 0rem;
     width: 220px;
     height: 220px;
 }
@@ -87,7 +93,7 @@ td {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #e7f3ff;
+    background-color: #c4c4c4;
 }
 
 @media (min-width: 320px) and (max-width: 500px) {

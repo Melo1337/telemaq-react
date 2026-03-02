@@ -13,6 +13,12 @@ form {
     margin: 1rem 0rem 1rem 0rem;
 }
 
+section div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .seletores {
     display: flex;
     flex-direction: column;
@@ -45,6 +51,7 @@ iframe {
     height: auto;
     border-radius: 1rem;
     border: 2px solid #adadad;
+    background-color: #d4d4d4;
 }
 
 .title {
