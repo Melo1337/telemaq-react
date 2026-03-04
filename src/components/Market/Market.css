@@ -1,11 +1,3 @@
-.printers {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;  
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
 .printer {
     display: flex;
     flex-direction: column;

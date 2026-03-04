@@ -85,10 +85,7 @@ function Body() {
 
             <section id="produtos">
                 <div className="container">
-                    <h2 className="section-title">Impressoras a venda</h2>
-                    <div className="printers">
-                        <Market />
-                    </div>
+                    <Market />
                 </div>
             </section>
         </div>
