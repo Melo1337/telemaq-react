@@ -11,7 +11,7 @@ function Printer() {
     const location = useLocation();
     const IndexClick = location.state || {};
 
-    const itemDetails = listaProdutos[IndexClick.id]
+    const itemDetails = listaProdutos.impressoras[IndexClick.id]
 
     function loadHeadFeatures(headFeatures) {
         return headFeatures.map(item => <li>{item}</li>)

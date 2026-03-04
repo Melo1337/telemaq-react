@@ -10,7 +10,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/PrinterDetails" element={<Printer />} />
+      <Route path="/PrinterDetails/:id" element={<Printer />} />
       <Route path="/Tutoriais" element={<Tutoriais />} />
     </Routes>
   </BrowserRouter>
