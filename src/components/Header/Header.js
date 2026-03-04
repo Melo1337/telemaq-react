@@ -30,7 +30,7 @@ function Header() {
             ) : (
               <>
                 <li><Link to="/" onClick={closeMenu}>Início</Link></li>
-                <li><Link to="/Tutorials" onClick={closeMenu}>Tutoriais</Link></li>
+                <li><Link to="/Tutoriais" onClick={closeMenu}>Tutoriais</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Sobre</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Vantagens</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Produtos</Link></li>
