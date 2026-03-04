@@ -5,26 +5,15 @@ import './Market.css'
 
 function Market() {
     return (
-        <div className="printers">
-            {Object.values(listPrinters.impressoras).map((product, index) => {
-
+        <>
+            {Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => {
                 return (
-                    <div className="printer" id={index}>
-                        <h3>{product.nome}</h3>
-                        <img src={`/img/${product.imagemSrc}.jpg`} alt={product.nome} />
-                        <p>{product.descricao}</p>
-                        <p><strong>R$ {product.preco},00</strong></p>
-                        
-                        <div className="buttons">
-                            <ButtomWhatsapp texto={"Comprar"} link={`Olá! Gostaria de saber mais sobre a impressora ${product.nome} que está anunciada no site!`} />
-                            <Link to={`/PrinterDetails/${product.nome}`} state={{ id: index }}>
-                                <ButtomWhatsapp texto={"Ver detalhes"} />
-                            </Link>
-                        </div>
+                    <div key={nomeDaCategoria} className={nomeDaCategoria}>
+                        <p>{nomeDaCategoria}</p>
                     </div>
                 );
             })}
-        </div>
+        </>
     );
 }
 

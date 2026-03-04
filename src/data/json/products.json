@@ -183,5 +183,52 @@
         }
       }
     }
+  ],
+  "cilindros": [
+    {
+      "nome": "Brother MFC-9330CDW",
+      "preco": 2500.0,
+      "descricao": "Multifuncional semi-nova, laser, Colorida, wi-fi",
+      "imagemSrc": "imp1",
+      "headFeatures": [
+        "Até 23 páginas por minuto",
+        "Conectividade sem Fio - Wirelless",
+        "Impressão e scanner coloridos"
+      ],
+      "feature": {
+        "impressão": {
+          "Velocidade de impressão": "23 páginas por minuto",
+          "Tipo de consumível": "Cartucho e tambor de toner",
+          "Compatibilidade do driver da impressora": "Windows, macOS, Linux",
+          "Capacidade de impressão frente e verso": "sim"
+        },
+        "conectividade": {
+          "Compatibilidade com dispositivos móveis": "Google Cloud Print™, Brother iPrint&Scan, Wi-Fi Direct®",
+          "Interface(s) padrão": "Conectividade sem fio 802.11 b/g/n, USB 2.0 de alta velocidade"
+        },
+        "cópia": {
+          "Copiar resolução": "600 x 600 dpi máx",
+          "Cópia frente e verso": "Não",
+          "Velocidade de cópia": "Velocidade de cópia em preto (máx. ppm)"
+        },
+        "digiralizador": {
+          "Serviços em nuvem": "Box/Box for Business, OneNote, SharePoint Online, Google Drive™/Google Drive for Business, Evernote®/Evernote Business, OneDrive/OneDrive for Business, Dropbox/Dropbox for Business",
+          "Digitalização duplex": "Não",
+          "Recurso Escanear para": "E-mail, PC (Arquivo, E-mail, Imagem, OCR), FTP, Pasta de Rede (CIFS - somente Windows), Servidor de E-mail (download)",
+          "Formatos de arquivo de digitalização": "JPEG (JPG), PDF (página única/várias páginas) (PDF/A, PDF de alta compressão), TIFF (página única/várias páginas) (TIF), Bitmap do Windows (BMP), MAX",
+          "Resolução de digitalização óptica": "1200 x 2400 dpi",
+          "Digitalização de dispositivos móveis": "Brother iPrint&Scan"
+        },
+        "geral": {
+          "Peso unitário (lbs)": "51.1",
+          "Dimensões da unidade (L x P x A)": "16,1 x 19,0 x 16,1",
+          "Visor LCD": "Tela sensível ao toque colorida de 3,7",
+          "Volume de impressão mensal recomendado": "300 a 1.500 páginas",
+          "Capacidade de saída de papel": "100",
+          "Capacidade de entrada de papel padrão": "250",
+          "Tamanho do papel a ser manuseado - Alimentação manual": "Carta, Envelope, Ofício, Executivo, A4, A5, A6"
+        }
+      }
+    }
   ]
 }
