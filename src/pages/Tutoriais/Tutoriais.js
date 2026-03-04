@@ -45,7 +45,7 @@ const Tutoriais = () => {
       <section className='container-tutorial'>
         <div>
           <h2 className='title'>Selecione abaixo o modelo do seu equipamento e o tutorial desejado:</h2>
-          <p>Link atual: <code>{window.location.search}</code></p>
+          <p>O vídeo será gerado quando preencher os campos acima</p>
         </div>
         <form>
           <div className='seletores'>
