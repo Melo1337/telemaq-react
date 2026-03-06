@@ -1,4 +1,5 @@
 import listPrinters from "../../data/json/products.json";
+import productsList from "../../data/json/filter.json";
 import ButtomWhatsapp from "../ButtomWhatsapp/ButtomWhatsapp";
 import { Link } from "react-router-dom";
 import './Market.css'
@@ -6,11 +7,11 @@ import './Market.css'
 function Market() {
     return (
         <>
-            {Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => {
-                return (
-                    <div key={nomeDaCategoria} className={nomeDaCategoria}>
-                        <h1>{nomeDaCategoria}</h1>
+            {Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => (
+                <div key={nomeDaCategoria} className={nomeDaCategoria}>
+                    <h1>Impressoras a venda</h1>
 
+                    <div className="printers">
                         {listaDeProdutos.map((product, index) => (
                             <div className="printer" id={index}>
                                 <h3>{product.nome}</h3>
@@ -27,8 +28,16 @@ function Market() {
                             </div>
                         ))}
                     </div>
-                );
-            })}
+                    <div className="products">
+                        {Object.entries(productsList).map(([nomeDaCategoria]) => (
+                            <div className={nomeDaCategoria}>
+                                <h1>{nomeDaCategoria}</h1>
+                                
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </>
     );
 }
