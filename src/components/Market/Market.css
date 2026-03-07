@@ -1,4 +1,4 @@
-.printers {
+.products {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -13,6 +13,20 @@
     margin-right: 40px;
     width: 280px;
     height: 350px;
+}
+
+.printer > h3{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;           /* Limite de 2 linhas */
+    -webkit-box-orient: vertical;    /* Obrigatório para o clamp */
+    overflow: hidden;                /* Esconde o excesso */
+    text-overflow: ellipsis;         /* Adiciona os ... */
+    
+    /* ADICIONE ESTAS DUAS LINHAS ABAIXO: */
+    white-space: normal;             /* Garante que o texto possa quebrar */
+    line-height: 1.4em;              /* Define uma altura de linha clara */
+    max-height: 2.8em;         
+    font-size: 1rem;      
 }
 
 .printer>p {
