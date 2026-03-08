@@ -1,69 +1,46 @@
 .products {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
-.printer {
+.product {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 40px;
-    width: 280px;
-    height: 350px;
+    align-items: center;
+    background-color: rgb(241, 241, 241);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
-.printer > h3{
+.product>h3 {
     display: -webkit-box;
-    -webkit-line-clamp: 2;           /* Limite de 2 linhas */
-    -webkit-box-orient: vertical;    /* Obrigatório para o clamp */
-    overflow: hidden;                /* Esconde o excesso */
-    text-overflow: ellipsis;         /* Adiciona os ... */
-    
-    /* ADICIONE ESTAS DUAS LINHAS ABAIXO: */
-    white-space: normal;             /* Garante que o texto possa quebrar */
-    line-height: 1.4em;              /* Define uma altura de linha clara */
-    max-height: 2.8em;         
-    font-size: 1rem;      
-}
-
-.printer>p {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: normal;
+    line-height: 1.4em;
+    max-height: 2.8em;
 }
 
-.printer>* {
+.product > .img {
     width: 100%;
-}
-
-.printer>img {
-    margin-top: 1rem;
-    width: 70%;
-}
-
-.printer>div {
-    width: 80%;
-    height: 2rem;
-}
-
-.printer>div>h4 {
-    font-size: 0.9rem;
-    font-weight: 400;
-}
-
-.printer>div>img {
-    height: 1rem;
-    margin-right: 0.5rem;
-}
-
-.buttons {
-    margin-top: 5px;
+    height: 150px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
 }
 
-.buttons a .btn {
-    padding: 0.4rem;
-    background-color: #075E54;
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product>p {
+    white-space: normal;
 }
