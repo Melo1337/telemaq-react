@@ -1,0 +1,239 @@
+{
+    "Cilindros": [
+        {
+            "codigo": 441,
+            "referencia": "R441",
+            "descricao": "Cilindro Brother DCP8065 HL5240 DR520 TN580",
+            "grupo": "CILINDROS",
+            "unidade": "Pça",
+            "preco_venda": 75,
+            "estoque": 199,
+            "marca": "DR520",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 622,
+            "referencia": "R622",
+            "descricao": "Cilindro Brother DCP7065 HL-2270 HL-2130 MFC-7360 7860 HL2240 DCP7065 MFC7460 HL2230 HL2220 HL5350DN",
+            "grupo": "CILINDROS",
+            "unidade": "Pça",
+            "preco_venda": 75,
+            "estoque": 84,
+            "marca": "DR-420 DR-410 DR-450",
+            "imagem": null,
+            "observacoes": "DR-420, DR-410, DR-450 para utilização no toner TN-420 TN-410 TN-450 HL-2270 HL-2130 MFC-7360 DCP7065 7860 HL2240 DCP7055 MFC7460 HL2230 HL2220 HL5350DN HL7060 HL2132 HL2210 HL2250 DCP7066"
+        },
+        {
+            "codigo": 738,
+            "referencia": "R738",
+            "descricao": "Unidade de cilindro Brother DCP8157 8150 8155 8250 MFC8510 8520 8710 8810 8157 8912 8912 6182 8952",
+            "grupo": "CILINDROS",
+            "unidade": "Pça",
+            "preco_venda": 140,
+            "estoque": 8,
+            "marca": "DR720 3302",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 895,
+            "referencia": "R895",
+            "descricao": "Cilindro Brother HL-4140CN HL-4150CDN MFC-9460CDN HL-4570CDW MFC9560CDW MFC9970CDW",
+            "grupo": "CILINDROS",
+            "unidade": "Pça",
+            "preco_venda": 28,
+            "estoque": 7,
+            "marca": "DR310",
+            "imagem": null,
+            "observacoes": null
+        }
+    ],
+    "Toners": [
+        {
+            "codigo": 793,
+            "referencia": "R793",
+            "descricao": "Toner refil Brother 1Kg universal",
+            "grupo": "TONER",
+            "unidade": "Ref",
+            "preco_venda": 160,
+            "estoque": 135,
+            "marca": null,
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 892,
+            "referencia": "R892",
+            "descricao": "Toner refil Toshiba universal",
+            "grupo": "TONER",
+            "unidade": "Ref",
+            "preco_venda": 320,
+            "estoque": 40,
+            "marca": null,
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 844,
+            "referencia": "R844",
+            "descricao": "Cart. Brother DCP-L2520DN 2540DW HL-L2300 2320 2340 2360 2380 MFC-L2700 2705 2720 2740",
+            "grupo": "TONER",
+            "unidade": "Pça",
+            "preco_venda": 65,
+            "estoque": 26,
+            "marca": "TN660 630 2340 2370",
+            "observacoes": "Cartucho de Toner Compatível Brother TN-2370 utilizado nos seguintes equipamentos Brother: HL-L2360DW 2360DW, HL-L2320D 2320D, MFC-L2720DW 2720DW, MFC-L2740DW 2740DW, MFC-L2700DW 2700DW, DCP-L2520DW 2520DW, DCP-L2540DW DCP-L2540 2540DW. Rendimento médio de 2.600 páginas"
+        },
+        {
+            "codigo": 855,
+            "referencia": "R855",
+            "descricao": "Cart. Brother HL 1110 1112 1200 1202 1212 DCP1512 1602 1607 MFC1810 1815 1900 1905",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 50,
+            "estoque": 25,
+            "marca": "TN1060 1030",
+            "observacoes": null
+        },
+        {
+            "codigo": 857,
+            "referencia": "R857",
+            "descricao": "Cart. Brother DCPL5652DN, HL-L6202DW, HLL5102DW, HL-L5202DW, HL-L6402DW, DCPL5502DN, DCP-L5602DN",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 105,
+            "estoque": 24,
+            "marca": "TN3442 TN890 890 3472 3490",
+            "observacoes": "Cartucho de Toner de Serviço Brother TN-3442 TN-3442S para uso nos seguintes modelos de equipamentos: HL-L6202DW, HLL5102DW, HL-L5202DW, HL-L6402DW, DCPL5502DN, DCP-L5602DN, DCPL5652DN, MFC-L5902DW, MFCL5702DW, MFC-L6702DW, MFC-L6902DW, MFC-L5802DW\r\n\r\nHL-L6202DW HLL6202DW HLL6202 6202DW 6202 L6202\r\nHLL5102DW HLL5102 5102DW 5102 L5102\r\nHL-L5202DW HLL5202DW HLL5202 5202DW 5202 L5202\r\nHL-L6402DW HLL6402DW HLL6402 6402DW 6402 L6402\r\nDCPL5502DN DCPL5502 5502DW 5502 L5502\r\nDCP-L5602DN DCPL5602DN DCPL5602 5602DN 5602 L5602\r\nDCPL5652DN DCPL5652 5652DN 5652 L5652\r\nMFC-L5902DW MFCL5902DW MFCL5902 5902DW 5902 L5902\r\nMFCL5702DW MFCL5702 5702DW 5702 L5702\r\nMFC-L6702DW MFCL6702DW MFCL6702 6702DW 6702 L6702\r\nMFC-L6902DW MFCL6902DW MFCL6902 6902DW 6902 L6902\r\nMFC-L5802DW MFCL5802DW MFCL5802 5802DW 5802 L5802"
+        },
+        {
+            "codigo": 312,
+            "referencia": "R312",
+            "descricao": "Cart. Toshiba E-Studio 166/167/207/163",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 200,
+            "estoque": 19,
+            "marca": "T1640 Similar",
+            "observacoes": null
+        },
+        {
+            "codigo": 609,
+            "referencia": "R609",
+            "descricao": "Cart. Brother HL5440 5450 5459 5470 6180 MFC8157 8710 8910 8950 8150 8155",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 98,
+            "estoque": 19,
+            "marca": "TN720 750 780 3382 3340 3350 3385",
+            "observacoes": null
+        },
+        {
+            "codigo": 631,
+            "referencia": "R631",
+            "descricao": "Cart. HP P1005 1006 1100 1102 1104 1106 1107 1108 1109 M1132 1210 1503 1504 1505 1120 1522 1560 1606",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 65,
+            "estoque": 13,
+            "marca": "CB435/436/285A/278A",
+            "imagem": null,
+            "observacoes": "127FN M127 M-127FW M-127 M-125 M125A M-125A M-201 M-225 M-226 M-202"
+        },
+        {
+            "codigo": 984,
+            "referencia": "R984",
+            "descricao": "Cart. Pantum M7102 M6802 P3012 P3302 M6702 M7302",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 96,
+            "estoque": 11,
+            "marca": "TL410X",
+            "observacoes": "P3012DW\r\nP3302DW\r\nM6802FDW\r\nM7102DW\r\nM7202FDW\r\nP3012DN\r\nP3302DN\r\nM7102DN\r\nM7202DN\r\nM6700DW\r\nP3010DW"
+        },
+        {
+            "codigo": 980,
+            "referencia": "R980",
+            "descricao": "Cart. Pantum P2500 P 2500W M6550 M6550NW M6602",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 75,
+            "estoque": 10,
+            "marca": "PB210 PB211",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 552,
+            "referencia": "R552",
+            "descricao": "Cart. Brother MFc7360 7460 7860 DCP7060 7065 HL2230 2240 2270 2280 2130",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 60,
+            "estoque": 9,
+            "marca": "TN450 420 410",
+            "observacoes": null
+        },
+        {
+            "codigo": 556,
+            "referencia": "R556",
+            "descricao": "Cart. HP Color CP1025NW LJ Pro 100 200 M175A M175NW M276 176 177 - Amarelo",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 59,
+            "estoque": 8,
+            "marca": "CE312A CF352",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 603,
+            "referencia": "R603",
+            "descricao": "Toner refil HP grafico",
+            "grupo": "TONER",
+            "unidade": "Ref",
+            "preco_venda": 103.1,
+            "estoque": 7,
+            "marca": "JLT-003",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 426,
+            "referencia": "R426",
+            "descricao": "Cart. HP 1010-1012-1015-1018-1020-1022-1022N-1022NW-3015-3020-3030-3050-3052-3055-M1005MFP-M1319FMFP",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 65,
+            "estoque": 6,
+            "marca": "Q2612A",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 795,
+            "referencia": "R795",
+            "descricao": "Toner refil Samsung universal 1Kg",
+            "grupo": "TONER",
+            "unidade": "Ref",
+            "preco_venda": 180,
+            "estoque": 6,
+            "marca": "JLT-019HP",
+            "imagem": null,
+            "observacoes": null
+        },
+        {
+            "codigo": 983,
+            "referencia": "R983",
+            "descricao": "Cart. Brother HL-L1222 L1232 L1632",
+            "grupo": "TONER",
+            "unidade": "Car",
+            "preco_venda": 55,
+            "estoque": 6,
+            "marca": "TN116",
+            "imagem": null,
+            "observacoes": null
+        }
+    ]
+}

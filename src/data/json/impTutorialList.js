@@ -1,9 +1,13 @@
 const tutorial1212 = () => ({
-     "Reset de cilindro": "x3R-t4_XNIk?si=IJY9w0_5Tukq0gko" 
+     "Reset de cilindro": "x3R-t4_XNIk?si=IJY9w0_5Tukq0gko",
+     "trocar os suprimentos": "OG0mfekDay8?si=3ib7XGX7AzhBKBh2"
     });
 const tutorial1617 = () => ({
      "Reset do Toner": "xjr-k1qrDfg?si=uGfcfphporeRG8LD",
-     "Troca de suprimentos": "XLO32Hbwtlc?si=AIgETtpt6M637ZA7"
+     "Reset de Cilindro": "IIQPnaENwZk?si=ADStsXL4HqdH6mvS",
+     "Troca de suprimentos": "XLO32Hbwtlc?si=AIgETtpt6M637ZA7",
+     "trocar os suprimentos":"XLO32Hbwtlc?si=CKHLYhplpTRnaOgV",
+     "digitalização de documentos e fotos":"9E7BIja5rfw?si=9UecYdLvayWK5-qs"
     });
 const tutorial2540 = () => ({
     "Imprimir configuração de rede": "mVowccKhGMU?si=xPstGU8-uSBJHlaC",
@@ -12,7 +16,9 @@ const tutorial2540 = () => ({
     "Como conectar na rede wifi ": "q4_XiqbiCiw?si=8ZLgwhcJQDTi0ya5",
     "Reset de cilindro": "NlppUmYf9wA?si=LOv0hRW4yhNKcuj8",
     "Erro de cilindro": "NlppUmYf9wA?si=LOv0hRW4yhNKcuj8",
-    "Trocar de suprimentos (Toner e Cilindro)": "OUZPBRv8gVw?si=YZv5Q_hwWmgD-bN7" });
+    "Trocar de suprimentos (Toner e Cilindro)": "OUZPBRv8gVw?si=YZv5Q_hwWmgD-bN7",
+    "cópia simples e duplex": "AYJEudsIYHM?si=Qb2hxuIOO9ijnCBY"
+});
 const tutorial5652 = () => ({
     "Resetar o cilindro": "6GkvMVpgjDg?si=p0Erohf90HeqBUJK",
     "Erro de cilindro": "6GkvMVpgjDg?si=p0Erohf90HeqBUJK",
