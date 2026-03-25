@@ -18,6 +18,7 @@ const tutorial5652 = () => ({
     "Erro de cilindro": "6GkvMVpgjDg?si=p0Erohf90HeqBUJK",
     "Resetar o Toner": "Zwleny5Fh2k?si=C6lG--L7U643Z2r3" });
 const tutorial7065 = () => ({
+    "Pouco toner": "o745FjgCzI0?si=Lu_AEy5Zr4qvJogV",
     "Troca de cartucho de toner": "wf884_XWfqo?si=OBELXfxci9ktJTiI",
     "Reset de cilindro": "7LU_7OcF_IQ?si=XR2W8fH927fV1zM0" });
 const tutorial8157 = () => ({
