@@ -1,55 +1,93 @@
-.printers {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;  
-    overflow-x: auto;
-    white-space: nowrap;
+.product > h3,
+.product > .img  {
+    margin-bottom: 0.5rem;
 }
 
-.printer {
+.products {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 20px 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.product {
+    min-width: 265px;
+    max-width: 265px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 40px;
-    width: 280px;
-    height: 350px;
+    align-items: center;
+    background-color: rgb(241, 241, 241);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    flex-shrink: 0;
 }
 
-.printer > p {
-    white-space: normal; 
+.products::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
 }
 
-.printer > * {
+.product > h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.4em;
+    max-height: 2.8em;
+}
+
+.img {
     width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
 }
 
-.printer > img {
-    margin-top: 1rem;
-    width: 70%;
+img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
 }
 
-.printer > div {
-    width: 80%;
-    height: 2rem;
-} 
-
-.printer > div > h4 {
-    font-size: 0.9rem;
-    font-weight: 400;
-}
-
-.printer > div > img {
-    height: 1rem;
-    margin-right: 0.5rem;
+.product>p {
+    white-space: normal;
 }
 
 .buttons {
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-evenly;
+    width: 100%;
 }
 
-.buttons a .btn {
-    padding: 0.4rem;
-    background-color: #075E54;
+.buttons .btn {
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.descricao {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.8em; 
+  line-height: 1.4em;
+  transition: max-height 0.5s ease-in-out, color 0.3s ease;
+}
+
+.descricao:hover {
+  color: #000000;
+  -webkit-line-clamp: unset;
+  max-height: 500px; 
+}
+
+.lines {
+    margin-top: -1rem;
 }
