@@ -1,6 +1,5 @@
 .btn {
     display: flex;
-    align-items: center;
     background: var(--complementary);
     color: var(--white);
     padding: 10px 20px;
