@@ -3,34 +3,30 @@ import products from "../../data/json/filter.json";
 import ButtomWhatsapp from "../ButtomWhatsapp/ButtomWhatsapp";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import './Market.css'
-
-const express = require('express');
-const cors = require('cors'); // 1. Importe o CORS
-
+import './Market.css';
 
 function Market() {
+  const [dados, setDados] = useState(products); 
 
-useEffect(() => {
-  fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
-    method: 'GET',
-    headers: { 
-      'Content-Type': 'application/json',
-      'ngrok-skip-browser-warning': 'true' // ADICIONE ISSO
-    },
-  })
-    .then((resp) => {
-      if (!resp.ok) throw new Error('Erro na resposta do servidor');
-      return resp.json();
+  useEffect(() => {
+    fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      },
     })
-    .then((data) => {
-      setDados(data);
-    })
-    .catch((err) => {
-      console.log(`Api indisponivel, carregando arquivo local... ${err}`);
-      setDados(products); // Carrega local se a API falhar
-    });
-}, []);
+      .then((resp) => {
+        if (!resp.ok) throw new Error('Erro na resposta do servidor');
+        return resp.json();
+      })
+      .then((data) => {
+        setDados(data);
+      })
+      .catch((err) => {
+        console.log(`Api indisponivel, mantendo arquivo local... ${err}`);
+      });
+  }, []);
 
     return (
         <>
