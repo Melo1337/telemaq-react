@@ -11,7 +11,7 @@ function Market() {
   const [dados, setDados] = useState({});
 
   useEffect(() => {
-    fetch('http://192.168.2.254:3001/api/filter', {
+    fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
