@@ -1,27 +1,22 @@
-// arquivo: server.js
-const express = require('express');
-const cors = require('cors'); // IMPORTANTE: Instale com npm install cors
-const app = express();
+export const buscarDadosDaApi = async () => {
+  try {
+    // Corrigido: O parêntese do fetch deve fechar APÓS o objeto de configurações
+    const response = await fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true" // Pula a tela de aviso do ngrok
+      }
+    });
 
-// Configuração do CORS para aceitar qualquer origem e os cabeçalhos do ngrok
-app.use(cors({
-  origin: '*', // Permite que qualquer site acesse sua API
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'ngrok-skip-browser-warning']
-}));
+    if (!response.ok) {
+      throw new Error('Erro na rede ou servidor');
+    }
 
-app.use(express.json());
-
-// Sua rota da API
-app.get('/api/filter', (req, res) => {
-  res.json({ 
-    mensagem: "Dados filtrados com sucesso!", 
-    status: "online",
-    timestamp: new Date()
-  });
-});
-
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+    const json = await response.json();
+    console.log(json); // Exibe no console para conferir
+    return json;       // Retorna o JSON para quem chamou a função
+  } catch (error) {
+    console.error("Erro ao buscar dados:", error);
+    return null;
+  }
+};
