@@ -6,34 +6,37 @@ import { useState, useEffect } from 'react';
 import './Market.css';
 
 function Market() {
-  const [dados, setDados] = useState(products); 
+    const [dados, setDados] = useState(products);
 
-  useEffect(() => {
-    fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
-      method: 'GET',
-      headers: { 
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
-      },
-    })
-      .then((resp) => {
-        if (!resp.ok) throw new Error('Erro na resposta do servidor');
-        return resp.json();
-      })
-      .then((data) => {
-        setDados(data);
-      })
-      .catch((err) => {
-        console.log(`Api indisponivel, mantendo arquivo local... ${err}`);
-      });
-  }, []);
+    useEffect(() => {
+        fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true'
+            },
+        })
+            .then((resp) => {
+                if (resp.status === 200) {
+                    console.log("Dados da API carregados com sucesso!");
+                    return resp.json();
+                }
+            })
+            .then((data) => {
+                setDados(data);
+            })
+            .catch((err) => {
+                console.log(`Api indisponivel, mantendo arquivo local... ${err}`);
+                setDados(products);
+            });
+    }, []);
 
     return (
         <>
             <section id="produtos">
                 <div className="container">
 
-{Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => (
+                    {Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => (
                         <div key={nomeDaCategoria} className={nomeDaCategoria}>
                             <h1>Impressoras</h1>
 
