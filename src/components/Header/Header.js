@@ -9,6 +9,8 @@ function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const [busca, setBusca] = useState('')
+
   return (
     <header className="Header">
       <div className="container header-container">
@@ -19,8 +21,10 @@ function Header() {
         </Link>
 
         <form>
-          <input type='text' placeholder='Pesquisar produtos...'></input>
-          <Link to={`/resultado`}><button type="submit">Pesquisar</button></Link>
+          <input type='text' placeholder='Pesquisar produtos...' onChange={(e)=>setBusca(e.target.value)}></input>
+          <Link to={`/resultado?busca=${busca}`}>
+            <button type="submit">Pesquisar</button>
+          </Link>
         </form>
 
         <nav>

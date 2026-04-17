@@ -1,22 +1,23 @@
-export const buscarDadosDaApi = async () => {
-  try {
-    // Corrigido: O parêntese do fetch deve fechar APÓS o objeto de configurações
-    const response = await fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
-      headers: {
-        "Content-Type": "application/json",
-        "ngrok-skip-browser-warning": "true" // Pula a tela de aviso do ngrok
-      }
-    });
+import localProducts from "../data/json/filter.json";
 
-    if (!response.ok) {
-      throw new Error('Erro na rede ou servidor');
+export const fetchApi = async () => {
+    try {
+        const resp = await fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true'
+            },
+        });
+
+        if (resp.status === 200) {
+            console.log("Dados da API carregados com sucesso!");
+            return await resp.json();
+        }
+        
+        throw new Error("Resposta diferente de 200");
+    } catch (err) {
+        console.error(`Api indisponivel: ${err}`);
+        return localProducts;
     }
-
-    const json = await response.json();
-    console.log(json); // Exibe no console para conferir
-    return json;       // Retorna o JSON para quem chamou a função
-  } catch (error) {
-    console.error("Erro ao buscar dados:", error);
-    return null;
-  }
 };

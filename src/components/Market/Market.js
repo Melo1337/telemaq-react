@@ -1,35 +1,20 @@
-import listPrinters from "../../data/json/products.json";
-import products from "../../data/json/filter.json";
-import ButtomWhatsapp from "../ButtomWhatsapp/ButtomWhatsapp";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './Market.css';
 
-function Market() {
-    const [dados, setDados] = useState(products);
+import listPrinters from "../../data/json/products.json";
+import localProducts from "../../data/json/filter.json";
+import ButtomWhatsapp from "../ButtomWhatsapp/ButtomWhatsapp";
+import { fetchApi } from "../../services/requestProducts";
 
-    useEffect(() => {
-        fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
-            },
-        })
-            .then((resp) => {
-                if (resp.status === 200) {
-                    console.log("Dados da API carregados com sucesso!");
-                    return resp.json();
-                }
-            })
-            .then((data) => {
-                setDados(data);
-            })
-            .catch((err) => {
-                console.log(`Api indisponivel, mantendo arquivo local... ${err}`);
-                setDados(products);
-            });
-    }, []);
+function Market() {
+    const [dados, setDados] = useState(localProducts);
+
+    const getApi = async () => {
+        const data = await fetchApi()
+        setDados(data)
+    }
+    getApi()
 
     return (
         <>
