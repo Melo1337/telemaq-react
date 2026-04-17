@@ -50,7 +50,7 @@ function Market() {
 
                                         <div className="buttons">
                                             <ButtomWhatsapp texto={"Comprar"} link={`Olá! Gostaria de saber mais sobre a impressora ${product.nome} que está anunciada no site!`} />
-                                            <Link to={`/PrinterDetails/${product.nome}`} state={{ id: index }}>
+                                            <Link to={`/impressoras/${product.nome}`} state={{ id: index }}>
                                                 <ButtomWhatsapp texto={"Ver detalhes"} />
                                             </Link>
                                         </div>

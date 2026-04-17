@@ -17,6 +17,12 @@ function Header() {
             <h1>TELEMAQ</h1>
           </div>
         </Link>
+
+        <form>
+          <input type='text' placeholder='Pesquisar produtos...'></input>
+          <Link to={`/resultado`}><button type="submit">Pesquisar</button></Link>
+        </form>
+
         <nav>
           <ul className={`nav-links ${isOpen ? 'show' : ''}`}>
             {location.pathname === '/' ? (
