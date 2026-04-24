@@ -21,9 +21,9 @@ function Header() {
         </Link>
 
         <form>
-          <input type='text' placeholder='Pesquisar produtos...' onChange={(e)=>setBusca(e.target.value)}></input>
+          <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type='text' placeholder='Pesquisar produtos...' onChange={(e)=>setBusca(e.target.value)}></input>
           <Link to={`/resultado?busca=${busca}`}>
-            <button type="submit">Pesquisar</button>
+            <button className="rounded-r-lg bg-gray-400 text-white p-1" type="submit">Pesquisar</button>
           </Link>
         </form>
 

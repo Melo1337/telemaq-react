@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { fetchApi } from '../../services/requestProducts';
-import localJson from '../../data/json/filter.json'
 import ButtomWhatsapp from '../../components/ButtomWhatsapp/ButtomWhatsapp';
 
 function Resultado() {

@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.css'
 import App from './pages/home/App';
 import Printer from './pages/Printer/Printer';
 import Tutoriais from './pages/Tutoriais/Tutoriais';
 import Resultado from './pages/Resultado/Resultado.js';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
