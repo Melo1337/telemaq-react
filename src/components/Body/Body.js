@@ -7,7 +7,7 @@ function Body() {
         <div className="Body">
             <section id="home" className="hero">
                 <div className="container">
-                    <h2>Soluções em Locação de Impressoras e Multifuncionais</h2>
+                    <h2 className='font-bold'>Soluções em Locação de Impressoras e Multifuncionais</h2>
                     <p>Oferecemos as melhores soluções em equipamentos de impressão para sua empresa com planos flexíveis e suporte especializado.</p>
                     <ButtomWhatsapp texto="Solicitar Orçamento" link="Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20loca%C3%A7%C3%A3o!" />
                 </div>
