@@ -34,9 +34,9 @@ function Resultado() {
   return (
     <>
       <Header />
-      <h2>Resultados para: {busca}</h2>
+      <h2 className='font-bold my-4'>Resultados para: {busca}</h2>
 
-      <div className="products">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-6">
         {resultado.length > 0 ? (
           resultado.map(product => (
             <div className="product" id={product.codigo}>
@@ -56,7 +56,7 @@ function Resultado() {
             </div>
           ))
         ) : (
-          <p>Nenhum produto encontrado.</p>
+          <p className='flex mb-52'>Nenhum produto encontrado.</p>
         )}
       </div>
       <Footer />

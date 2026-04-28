@@ -20,10 +20,10 @@ function Header() {
           </div>
         </Link>
 
-        <form>
-          <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type='text' placeholder='Pesquisar produtos...' onChange={(e)=>setBusca(e.target.value)}></input>
+        <form className='hidden lg:flex'>
+          <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type='text' placeholder='Pesquisar produtos...' onChange={(e) => setBusca(e.target.value)}></input>
           <Link to={`/resultado?busca=${busca}`}>
-            <button className="rounded-r-lg bg-gray-400 text-white p-1" type="submit">Pesquisar</button>
+            <button className="rounded-r-lg bg-gray-400 text-white p-1 font-semibold" type="submit">Pesquisar</button>
           </Link>
         </form>
 
@@ -31,6 +31,12 @@ function Header() {
           <ul className={`nav-links ${isOpen ? 'show' : ''}`}>
             {location.pathname === '/' ? (
               <>
+                <form className='flex-row md:hidden'>
+                  <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type='text' placeholder='Pesquisar produtos...' onChange={(e) => setBusca(e.target.value)}></input>
+                  <Link to={`/resultado?busca=${busca}`}>
+                    <button className="rounded-r-lg bg-gray-400 text-white p-1 font-semibold" type="submit">Pesquisar</button>
+                  </Link>
+                </form>
                 <li><a href="#home" onClick={closeMenu}>Início</a></li>
                 <li><a href="/Tutoriais" onClick={closeMenu}>Tutoriais</a></li>
                 <li><a href="#sobre" onClick={closeMenu}>Sobre</a></li>
