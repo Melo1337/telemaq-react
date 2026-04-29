@@ -23,12 +23,12 @@ function Market() {
 
                     {Object.entries(listPrinters).map(([nomeDaCategoria, listaDeProdutos]) => (
                         <div key={nomeDaCategoria} className={nomeDaCategoria}>
-                            <h1>Impressoras</h1>
+                            <h1 className="text-xl font-bold uppercase">Impressoras</h1>
 
                             <div className="products">
                                 {listaDeProdutos.map((product, index) => (
                                     <div className="product" id={index}>
-                                        <h3>{product.nome}</h3>
+                                        <h3 className="font-semibold">{product.nome}</h3>
                                         <div className="img"><img src={`/img/${product.imagemSrc}.jpg`} alt={product.nome} /></div>
                                         <p>{product.descricao}</p>
                                         <p><strong>R$ {product.preco},00</strong></p>
@@ -46,13 +46,13 @@ function Market() {
                     ))}
 
                     {dados && Object.entries(dados).map(([nomeDaCategoria]) => (
-                        <div key={nomeDaCategoria} className={nomeDaCategoria}>
-                            <h1>{nomeDaCategoria}</h1>
+                        <div key={nomeDaCategoria} className={`${nomeDaCategoria} mb-4`}>
+                            <h1 className="text-xl font-bold">{nomeDaCategoria}</h1>
                             <div className={`products ${nomeDaCategoria}`}>
 
                                 {dados[nomeDaCategoria].map((product, index) => (
                                     <div className="product" id={product.codigo}>
-                                        <h3>{product.marca}</h3>
+                                        <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
                                             <img src={`/img/products/${product.codigo}.webp`} alt={product.nome} />
                                         </div>

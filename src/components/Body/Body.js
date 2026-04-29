@@ -3,6 +3,9 @@ import Market from '../Market/Market'
 import ButtomWhatsapp from '../ButtomWhatsapp/ButtomWhatsapp.js'
 
 function Body() {
+
+    const sectionTitle = 'text-xl font-bold'
+
     return (
         <div className="Body">
             <section id="home" className="hero">
@@ -15,26 +18,26 @@ function Body() {
 
             <section id="servicos" className="services">
                 <div className="container">
-                    <h2 className="section-title">Nossos Serviços</h2>
+                    <h2 className={`section-title ${sectionTitle}`}>Nossos Serviços</h2>
                     <div className="services-grid">
                         <div className="service-card">
                             <img src={'/img/services1.jpg'} alt="Locação de Impressoras" />
                             <div className="service-content">
-                                <h3>Locação de Impressoras</h3>
+                                <h3 className='font-bold text-xl'>Locação de Impressoras</h3>
                                 <p>Equipamentos de alta performance para todos os volumes de impressão, desde pequenas empresas até grandes corporações.</p>
                             </div>
                         </div>
                         <div className="service-card">
                             <img src={'/img/services2.jpg'} alt="Locação de Multifuncionais" />
                             <div className="service-content">
-                                <h3>Locação de Multifuncionais</h3>
+                                <h3 className='font-bold text-xl'>Locação de Multifuncionais</h3>
                                 <p>Equipamentos completos que imprimem, digitalizam, copiam e enviam fax, otimizando seu espaço e produtividade.</p>
                             </div>
                         </div>
                         <div className="service-card">
                             <img src={'/img/services3.jpg'} alt="Suporte Técnico" />
                             <div className="service-content">
-                                <h3>Suporte Técnico</h3>
+                                <h3 className='font-bold text-xl'>Suporte Técnico</h3>
                                 <p>Assistência técnica especializada e preventiva para garantir o perfeito funcionamento dos equipamentos.</p>
                             </div>
                         </div>
@@ -48,7 +51,7 @@ function Body() {
                         <img src={'/img/sobre-nos.jpg'} alt="Sobre a Telemaq Copiadoras" />
                     </div>
                     <div className="about-content">
-                        <h2>Sobre Nós</h2>
+                        <h2 className='text-3xl font-bold '>Sobre Nós</h2>
                         <p>A Telemaq Copiadoras está no mercado há mais de <strong>20 anos</strong>, oferecendo soluções completas em locação de equipamentos de impressão. Nossa missão é proporcionar aos nossos clientes tecnologia de ponta com custo acessível e suporte especializado.</p>
                         <p>Contamos com uma equipe de profissionais qualificados e uma ampla variedade de equipamentos das melhores marcas do mercado para atender desde pequenos escritórios até grandes corporações.</p>
                     </div>
@@ -57,7 +60,7 @@ function Body() {
 
             <section id="vantagens" className="benefits">
                 <div className="container">
-                    <h2 className="section-title">Vantagens de Alugar com a Telemaq</h2>
+                    <h2 className={`section-title ${sectionTitle}`}>Vantagens de Alugar com a Telemaq</h2>
                     <div className="benefits-grid">
                         <div className="benefit-card">
                             <i className="fas fa-sync-alt"></i>

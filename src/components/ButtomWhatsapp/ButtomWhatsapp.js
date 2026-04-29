@@ -6,7 +6,7 @@ function ButtomWhatsapp({texto, link, icon}) {
             <a href={`https://wa.me/5532984195001?text=${link}`}>
                 <div className="btn whatsapp">
                     <i className={icon}></i>
-                    <h4>{texto}</h4>
+                    <h4 className='font-bold'>{texto}</h4>
                 </div>
             </a>
     );
