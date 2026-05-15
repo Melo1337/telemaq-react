@@ -59,7 +59,7 @@ function Market() {
                                         <p className="descricao"><strong>Compativel: </strong>{product.descricao}</p>
                                         <p className="lines">___________________________________</p>
                                         <p>Quantidade disponivel: {product.estoque}</p>
-                                        <p><strong>R$ {product.preco_venda},00</strong></p>
+                                        
                                         <p>codigo: {product.codigo}</p>
 
                                         <div className="buttons">
