@@ -15,7 +15,7 @@ function Market() {
             const data = await fetchApi();
             setDados(data);
         };
-        
+
         getApi();
     }, []);
 
@@ -59,11 +59,12 @@ function Market() {
                                     <div className="product" key={product.codigo}>
                                         <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
-                                            {product.codigo ? (
-                                                <img src={`/img/products/${product.codigo}.webp`} alt={product.nome} />
-                                            ) : (
-                                                <img src={`/img/imagem-nao-disponivel.webp`} alt={product.nome} />
-                                            )}
+                                            <img src={`/img/products/${product.codigo}.webp`} alt={product.nome}
+                                                onError={(e) => {
+                                                    e.target.onerror = null; 
+                                                    e.target.src = '/img/imagem-nao-disponivel.webp';
+                                                }}
+                                            />
                                         </div>
                                         <p className="descricao"><strong>Compativel: </strong>{product.descricao}</p>
                                         <p className="lines">___________________________________</p>
