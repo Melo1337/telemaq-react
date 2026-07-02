@@ -54,16 +54,18 @@ function Market() {
                                     <div className="product" id={product.codigo}>
                                         <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
-                                            if (product.codigo) {
+                                            {
+                                                if (product.codigo) {
                                                 <img src={`/img/products/${product.codigo}.webp`} alt={product.nome} />
                                             } else {
                                                 <img src={`/img/products/imagem-nao-disponivel.webp`} alt={product.nome} />
+                                            }
                                             }
                                         </div>
                                         <p className="descricao"><strong>Compativel: </strong>{product.descricao}</p>
                                         <p className="lines">___________________________________</p>
                                         <p>Quantidade disponivel: {product.estoque}</p>
-                                        
+
                                         <p>codigo: {product.codigo}</p>
 
                                         <div className="buttons">
