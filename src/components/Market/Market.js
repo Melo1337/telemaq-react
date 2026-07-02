@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // 1. IMPORTADO O useEffect
 import './Market.css';
 
 import listPrinters from "../../data/json/products.json";
@@ -10,11 +10,14 @@ import { fetchApi } from "../../services/requestProducts";
 function Market() {
     const [dados, setDados] = useState(localProducts);
 
-    const getApi = async () => {
-        const data = await fetchApi()
-        setDados(data)
-    }
-    getApi()
+    useEffect(() => {
+        const getApi = async () => {
+            const data = await fetchApi();
+            setDados(data);
+        };
+        
+        getApi();
+    }, []);
 
     return (
         <>
@@ -27,7 +30,8 @@ function Market() {
 
                             <div className="products">
                                 {listaDeProdutos.map((product, index) => (
-                                    <div className="product" id={index}>
+                                    // CORRIGIDO: Alterado 'id' para 'key' para o React gerenciar a lista
+                                    <div className="product" key={index}>
                                         <h3 className="font-semibold">{product.nome}</h3>
                                         <div className="img"><img src={`/img/${product.imagemSrc}.jpg`} alt={product.nome} /></div>
                                         <p>{product.descricao}</p>
@@ -50,8 +54,9 @@ function Market() {
                             <h1 className="text-xl font-bold">{nomeDaCategoria}</h1>
                             <div className={`products ${nomeDaCategoria}`}>
 
-                                {dados[nomeDaCategoria].map((product, index) => (
-                                    <div className="product" id={product.codigo}>
+                                {dados[nomeDaCategoria].map((product) => (
+                                    // CORRIGIDO: Alterado 'id' para 'key' usando o código único do produto
+                                    <div className="product" key={product.codigo}>
                                         <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
                                             {product.codigo ? (
