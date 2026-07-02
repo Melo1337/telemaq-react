@@ -62,7 +62,7 @@ function Market() {
                                             {product.codigo ? (
                                                 <img src={`/img/products/${product.codigo}.webp`} alt={product.nome} />
                                             ) : (
-                                                <img src={`/img/products/imagem-nao-disponivel.webp`} alt={product.nome} />
+                                                <img src={`/img/imagem-nao-disponivel.webp`} alt={product.nome} />
                                             )}
                                         </div>
                                         <p className="descricao"><strong>Compativel: </strong>{product.descricao}</p>
