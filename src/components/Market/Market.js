@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Market.css';
 
 import listPrinters from "../../data/json/products.json";
@@ -10,11 +10,13 @@ import { fetchApi } from "../../services/requestProducts";
 function Market() {
     const [dados, setDados] = useState(localProducts);
 
-    const getApi = async () => {
-        const data = await fetchApi()
-        setDados(data)
-    }
-    getApi()
+    useEffect(() => {
+            const getApi = async () => {
+                const data = await fetchApi('filter')
+                setDados(data)
+            }
+            getApi()
+        }, [])
 
     return (
         <>
@@ -54,11 +56,7 @@ function Market() {
                                     <div className="product" id={product.codigo}>
                                         <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
-                                            if (product.codigo) {
-                                                <img src={`/img/products/${product.codigo}.webp`} alt={product.nome} />
-                                            } else {
-                                                <img src={`/img/products/imagem-nao-disponivel.webp`} alt={product.nome} />
-                                            }
+                                            <img src={product.codigo ? `/img/products/${product.codigo}.webp` : '/img/no-image.webp'} alt={product.nome} />
                                         </div>
                                         <p className="descricao"><strong>Compativel: </strong>{product.descricao}</p>
                                         <p className="lines">___________________________________</p>
