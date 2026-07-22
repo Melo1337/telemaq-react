@@ -1,8 +1,8 @@
 import localProducts from "../data/json/filter.json";
 
-export const fetchApi = async () => {
+export const fetchApi = async (value) => {
     try {
-        const resp = await fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/filter', {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/${value}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

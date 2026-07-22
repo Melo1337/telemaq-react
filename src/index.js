@@ -3,6 +3,7 @@ import App from './pages/home/App';
 import Printer from './pages/Printer/Printer';
 import Tutoriais from './pages/Tutoriais/Tutoriais';
 import Resultado from './pages/Resultado/Resultado.js';
+import Chamados from './pages/Chamados/Chamados.js';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ root.render(
       <Route path="/impressoras/:id" element={<Printer />} />
       <Route path="/tutoriais" element={<Tutoriais />} />
       <Route path="/resultado" element={<Resultado />} />
+      <Route path="/chamados" element={<Chamados />} />
     </Routes>
   </BrowserRouter>
 );
