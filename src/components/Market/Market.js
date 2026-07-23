@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react'; // 1. IMPORTADO O useEffect
+import { useState, useEffect } from 'react';
 import './Market.css';
 
 import listPrinters from "../../data/json/products.json";
@@ -12,10 +12,9 @@ function Market() {
 
     useEffect(() => {
         const getApi = async () => {
-            const data = await fetchApi();
+            const data = await fetchApi('filter');
             setDados(data);
         };
-
         getApi();
     }, []);
 
@@ -30,7 +29,6 @@ function Market() {
 
                             <div className="products">
                                 {listaDeProdutos.map((product, index) => (
-                                    // CORRIGIDO: Alterado 'id' para 'key' para o React gerenciar a lista
                                     <div className="product" key={index}>
                                         <h3 className="font-semibold">{product.nome}</h3>
                                         <div className="img"><img src={`/img/${product.imagemSrc}.jpg`} alt={product.nome} /></div>
@@ -55,11 +53,12 @@ function Market() {
                             <div className={`products ${nomeDaCategoria}`}>
 
                                 {dados[nomeDaCategoria].map((product) => (
-                                    // CORRIGIDO: Alterado 'id' para 'key' usando o código único do produto
                                     <div className="product" key={product.codigo}>
                                         <h3 className="text-lg font-bold uppercase">{product.marca}</h3>
                                         <div className="img">
-                                            <img src={`/img/products/${product.codigo}.webp`} alt={product.nome}
+                                            <img 
+                                                src={product.codigo ? `/img/products/${product.codigo}.webp` : '/img/no-image.webp'} 
+                                                alt={product.nome}
                                                 onError={(e) => {
                                                     e.target.onerror = null; 
                                                     e.target.src = '/img/imagem-nao-disponivel.webp';

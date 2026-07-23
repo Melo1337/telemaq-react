@@ -9,11 +9,11 @@ function Resultado() {
   const [searchParams] = useSearchParams();
   const busca = searchParams.get('busca')?.toLowerCase() || ""; // Garante que a busca seja minúscula
 
-  const [dados, setDados] = useState(null); // Inicia como null para saber que está carregando
+  const [dados, setDados] = useState([]); // Inicia como null para saber que está carregando
 
   useEffect(() => {
     const getApi = async () => {
-      const data = await fetchApi();
+      const data = await fetchApi('filter');
       setDados(data);
     };
     getApi();
