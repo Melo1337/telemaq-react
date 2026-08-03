@@ -26,7 +26,7 @@ const Chamados = () => {
                     "ngrok-skip-browser-warning": "true" }
                 });
 
-                console.log(`Acesso autorizado`);
+                console.log(`Acesso autorizado`, response);
 
                 const dataChamados = await fetchApi('/chamados');
                 setRepositoryChamados(dataChamados);
