@@ -5,7 +5,7 @@ import './Market.css';
 import listPrinters from "../../data/json/products.json";
 import localProducts from "../../data/json/filter.json";
 import ButtomWhatsapp from "../ButtomWhatsapp/ButtomWhatsapp";
-import { fetchApi } from "../../services/requestProducts";
+import { fetchApi } from "../../services/requestApiDataBase";
 
 function Market() {
     const [dados, setDados] = useState(localProducts);

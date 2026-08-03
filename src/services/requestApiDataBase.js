@@ -1,12 +1,16 @@
 import localProducts from "../data/json/filter.json";
 
 export const fetchApi = async (value) => {
+
+    const token = localStorage.getItem("token");
+
     try {
-        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/${value}`, {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api${value}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
+                'ngrok-skip-browser-warning': 'true',
+                'Authorization': token ? `Bearer ${token}` : ''
             },
         });
 

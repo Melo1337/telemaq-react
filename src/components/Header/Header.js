@@ -38,6 +38,7 @@ function Header() {
                   </Link>
                 </form>
                 <li><a href="#home" onClick={closeMenu}>Início</a></li>
+                <li><a href="/login" onClick={closeMenu}>login</a></li>
                 <li><a href="/Tutoriais" onClick={closeMenu}>Tutoriais</a></li>
                 <li><a href="#sobre" onClick={closeMenu}>Sobre</a></li>
                 <li><a href="#vantagens" onClick={closeMenu}>Vantagens</a></li>
@@ -46,6 +47,7 @@ function Header() {
             ) : (
               <>
                 <li><Link to="/" onClick={closeMenu}>Início</Link></li>
+                <li><a href="/login" onClick={closeMenu}>login</a></li>
                 <li><Link to="/Tutoriais" onClick={closeMenu}>Tutoriais</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Sobre</Link></li>
                 <li><Link to="/" onClick={closeMenu}>Vantagens</Link></li>

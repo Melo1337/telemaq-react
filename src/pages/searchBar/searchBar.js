@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import { fetchApi } from '../../services/requestProducts';
+import { fetchApi } from '../../services/requestApiDataBase';
 import ButtomWhatsapp from '../../components/ButtomWhatsapp/ButtomWhatsapp';
 
 function Resultado() {
