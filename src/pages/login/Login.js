@@ -11,24 +11,33 @@ function Login() {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
 
-  const handleSubmit = async (event) => { 
-    event.preventDefault();
-    
-    try {
-      const response = await axios.post('https://vicarly-undeprived-keira.ngrok-free.dev/api/login', {
-        email: email,
-        senha: senha
-      })
+const handleSubmit = async (event) => { 
+  event.preventDefault();
+  
+  try {
+    const response = await axios.post('https://vicarly-undeprived-keira.ngrok-free.dev/api/login', {
+      email: email,
+      senha: senha
+    });
 
-      localStorage.setItem('token', response.data.token)
-      navigate('/chamados')
-    } 
+    localStorage.setItem('token', response.data.token);
+    navigate('/chamados');
     
-    catch (error) {
-      alert("Email ou Senha incorretos!")
-      console.error(error)
+  } catch (error) {
+    if (error.response) {
+      if (error.response.status === 401 || error.response.status === 400 || error.response.status === 403) {
+        alert('Usuário ou Senha incorretos!');
+      } else {
+        alert(`Erro no servidor: Código ${error.response.status}`);
+      }
+    } else if (error.request) {
+      console.error('Falha de rede/Ngrok indisponível:', error.request);
+      alert('Servidor fora do ar ou inacessível. Verifique sua conexão!');
+    } else {
+      alert('Erro interno na aplicação.');
     }
-  };
+  }
+};
 
   return (
     <>
