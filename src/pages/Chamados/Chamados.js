@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { fetchApi } from "../../services/requestApiDataBase";
 import axios from "axios";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 const Chamados = () => {
     const navigate = useNavigate();
@@ -110,22 +111,21 @@ const Chamados = () => {
     }
 
     const getClientes = () => {
-
-        const resultBusca = () => {
-            const resultado = busca.filter(cliente => cliente.codigo || cliente.nome || cliente.nome_fantasia || cliente.cnpj_cpf)
-            return <div>deu Centro</div>
-        }
-
-        return <form>
-            <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type="text" placeholder="Pesquisar clientes..." onChange={(e)=>setBusca(e.target.value)}></input>
-            </form>
-            {resultBusca}
+        return Object.entries(repositoryClientes).map(([chave, cliente]) => (
+            <div className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
+                <p className="text-blue-500 font-bold">{cliente.codigo}.</p>
+                <p className="ms-4"><strong>Nome: </strong>{cliente.nome}</p>
+                {cliente.nome_fantasia !== null && (<p className="ms-4"><strong>Fantasia: </strong>{cliente.nome_fantasia}</p>)}
+                <p className="ms-4"><strong>Doc: </strong>{cliente.cnpj_cpf}</p>
+                <p className="ms-4"><strong>Tel: </strong>{cliente.telefone}</p>
+            </div>
+        ))
     }
 
     return (
         <>
             <Header />
-            <section className="">
+            <section className="flex flex-col items-center">
                 <div className="tables flex">
                     <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8" onClick={() => setResult(getChamados)}>
                         <h1>Chamados</h1>
@@ -144,7 +144,7 @@ const Chamados = () => {
                         <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
                 </div>
-                <div className="result">
+                <div className="flex flex-col items-center">
                     {result}
                 </div>
             </section>
