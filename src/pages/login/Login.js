@@ -1,5 +1,4 @@
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -51,8 +50,6 @@ const handleSubmit = async (event) => {
           <button className='font-semibold p-2 border-2 border-gray-400 rounded-lg' type="submit">Fazer login </button>
         </form>
       </div>
-
-      <Footer />
     </>
   );
 }

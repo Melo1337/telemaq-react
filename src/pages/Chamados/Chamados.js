@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { fetchApi } from "../../services/requestApiDataBase";
 import axios from "axios";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 const Chamados = () => {
     const navigate = useNavigate();
@@ -121,75 +122,23 @@ const Chamados = () => {
         ))
     }
 
-    const renderizarClientes = () => {
+    const getClientes = () => {
 
-        if (search) {
-            const clientesFiltrados = repositoryClientes.filter(cliente => {
-                const termo = search.toLowerCase();
-                return (
-                    cliente.nome?.toLowerCase().includes(termo) ||
-                    cliente.codigo?.toString().includes(termo) ||
-                    cliente.cnpj_cpf?.toString().includes(termo)
-                );
-            });
-
-            return Object.entries(clientesFiltrados).map(([chave, cliente]) => (
-                <div className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
-                    <p className="text-blue-500 font-bold">{cliente.codigo}.</p>
-                    <p className="ms-4"><strong>Nome: </strong>{cliente.nome}</p>
-                    {cliente.nome_fantasia !== null && (<p className="ms-4"><strong>Fantasia: </strong>{cliente.nome_fantasia}</p>)}
-                    <p className="ms-4"><strong>Doc: </strong>{cliente.cnpj_cpf}</p>
-                    <p className="ms-4"><strong>Tel: </strong>{cliente.telefone}</p>
-                </div>
-            ))
-        } else {
-            return Object.entries(repositoryClientes).map(([chave, cliente]) => (
-                <div className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
-                    <p className="text-blue-500 font-bold">{cliente.codigo}.</p>
-                    <p className="ms-4"><strong>Nome: </strong>{cliente.nome}</p>
-                    {cliente.nome_fantasia !== null && (<p className="ms-4"><strong>Fantasia: </strong>{cliente.nome_fantasia}</p>)}
-                    <p className="ms-4"><strong>Doc: </strong>{cliente.cnpj_cpf}</p>
-                    <p className="ms-4"><strong>Tel: </strong>{cliente.telefone}</p>
-                </div>
-            ))
+        const resultBusca = () => {
+            const resultado = busca.filter(cliente => cliente.codigo || cliente.nome || cliente.nome_fantasia || cliente.cnpj_cpf)
+            return <div>deu Centro</div>
         }
+
+        return <form>
+            <input className='rounded-l-lg bg-gray-200 rounded-4xl p-1' type="text" placeholder="Pesquisar clientes..." onChange={(e)=>setBusca(e.target.value)}></input>
+            </form>
+            {resultBusca}
     }
-
-const renderizarEquipamentos = () => {
-  if (search) {
-    const termo = search.toLowerCase().replace(/\s+/g, '');
-
-    const equipFiltrados = repositoryEquipamentos.filter(equip => {
-      const normalizar = (valor) => valor ? valor.toString().toLowerCase().replace(/\s+/g, '') : '';
-
-      return (
-        normalizar(equip.codigo).includes(termo) ||
-        normalizar(equip.descricao).includes(termo) ||
-        normalizar(equip.modelo).includes(termo) ||
-        normalizar(equip.n_serie).includes(termo)
-      );
-    });
-
-    return equipFiltrados.map((equip) => (
-      <>
-      <div key={equip.codigo || equip.n_serie} className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
-        <p className="text-blue-500 font-bold">{equip.codigo}.</p>
-        <p className="ms-4"><strong>descricao: </strong>{equip.descricao}</p>
-        <p className="ms-4"><strong>marca: </strong>{equip.marca}</p>
-        <p className="ms-4"><strong>modelo: </strong>{equip.modelo}</p>
-        <p className="ms-4"><strong>n_serie: </strong>{equip.n_serie}</p>
-      </div>
-      </>
-    ));
-  } else {
-    return <p>Sem valor</p>;
-  }
-};
 
     return (
         <>
             <Header />
-            <section className="">
+            <section className="flex flex-col items-center">
                 <div className="tables flex">
                     <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8" onClick={() => alternarAba('chamados')}>
                         <h1>Chamados</h1>
@@ -208,16 +157,8 @@ const renderizarEquipamentos = () => {
                         <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
                 </div>
-                <div className="flex flex-col items-center">
-                    {(abaAtiva === 'clientes' || abaAtiva === 'equipamentos') && (
-                        <input type="text"
-                            placeholder={`Pesquisar em ${abaAtiva}...`}
-                            value={search} onChange={(e) => setSearch(e.target.value)}
-                            className="border-2 border-gray-400 p-2 rounded-md w-full max-w-md mb-4" />
-                    )}
-                    {abaAtiva === 'chamados' && renderizarChamados()}
-                    {abaAtiva === 'clientes' && search && renderizarClientes()}
-                    {abaAtiva === 'equipamentos' && search && renderizarEquipamentos()}
+                <div className="result">
+                    {result}
                 </div>
             </section>
         </>
