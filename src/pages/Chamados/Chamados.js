@@ -37,6 +37,7 @@ const Chamados = () => {
 
                 const dataEquipamentos = await fetchApi('/tables/equipamentos');
                 setRepositoryEquipamentos(dataEquipamentos.SEM_GRUPO || dataEquipamentos);
+
             } catch (error) {
                 console.error("Status do Erro:", error.response?.status);
                 console.error("Mensagem do Backend:", error.response?.data);
@@ -168,14 +169,58 @@ const Chamados = () => {
             contentRef: contentDocument,
         });
 
+        const [inputCodigo, setInputCodigo] = useState("");
+        const [inputValor, setInputValor] = useState("");
+        const [codigoCliente, setCodigoCliente] = useState("");
+
+        const handleInserirCliente = (e) => {
+            e.preventDefault();
+            setCodigoCliente(inputCodigo);
+        }
+
+        const renderSelecterClient = () => {
+
+            const listaClientes = repositoryClientes.SEM_GRUPO || repositoryClientes
+
+            const cliente = listaClientes.find(c => Number(c.codigo) === Number(codigoCliente));
+
+            if (!codigoCliente) {
+                return (
+                    <div>
+                        <p><strong>Fantasia:</strong> </p>
+                        <p><strong>CNPJ:</strong> </p>
+                        <p><strong>Cidade:</strong> </p>
+                        <p><strong>Telefone:</strong> </p>
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <h3>{cliente.nome}</h3>
+                        <p><strong>Fantasia:</strong> {cliente.nome_fantasia}</p>
+                        <p><strong>CNPJ:</strong> {cliente.cnpj_cpf}</p>
+                        <p><strong>Cidade:</strong> {cliente.cidade} - {cliente.uf}</p>
+                        <p><strong>Telefone:</strong> {cliente.telefone}</p>
+                    </div>
+                );
+            }   
+        }
+
         return (
             <div>
                 <div className="flex justify-center">
                     <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500">imprimir</button>
                 </div>
-                <div ref={contentDocument}>
-                    <div>
-                        <div>
+
+                <form>
+                    <input className="border-2" placeholder="Digite o codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)}></input>
+                    <input className="border-2" placeholder="Digite o valor" value={inputValor} onChange={(e) => setInputValor(e.target.value)}></input>
+                    <button type="submit" onClick={handleInserirCliente}>Inserir</button>
+                </form>
+
+                <div ref={contentDocument} className="w-[800px] p-8 *:mb-8">
+                    <div className="flex ">
+                        <div className="*:text-sm">
                             <h1>TELEMAQ</h1>
                             <p>RUA MARIANO PROCÓPIO 65, CENTRO</p>
                             <p>{"(32)98419-5001"}</p>
@@ -183,7 +228,7 @@ const Chamados = () => {
                             <p>CNPJ: 05.370.410/0001-48 - Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
                             <p>Emissão: 05/01/2026</p>
                         </div>
-                        <div className="w-1/2">
+                        <div className="*:text-sm w-1/2">
                             <p>RECIBO DE SERVIÇO</p>
                             <p>Natureza da Operação: Prestação de Serviços</p>
                             <p>ALUGUEL DE IMPRESSORA E MULTIFUNCIONAL</p>
@@ -191,46 +236,32 @@ const Chamados = () => {
                             <p>Nº: 001117</p>
                         </div>
                     </div>
-                    <main>
-                        <div>
-                            <table className="table-fixed w-full border border-gray-400">
-                                <tr className="border">Cliente: telemaq</tr>
-                                <td className="border">
-                                    <tr className="border">Endereco: ppraca arioca</tr>
-                                    <tr className="border">municipio:</tr>
-                                    <tr className="border">cnpj</tr>
-                                </td>
-                                <td className="border">
-                                    <tr className="border">Bairro:</tr>
-                                    <tr className="border">Estado:</tr>
-                                    <tr className="border">Inscricao:</tr>
-                                </td>
-                            </table>
-                        </div>
-                        <div>
-                            <table className="table-fixed w-full border border-gray-400">
-                                <thead>
-                                    <tr className="bg-gray-200">
-                                        <th className="border border-gray-300">Quant.</th>
-                                        <th className="border border-gray-300">Unid.</th>
-                                        <th className="border border-gray-300 w-2/5">Descrição dos Serviços</th>
-                                        <th className="border border-gray-300 w-1/5">Preço Unitário</th>
-                                        <th className="border border-gray-300 w-1/5">Preço Total R$</th>
-                                    </tr>
-                                </thead>
+                    <div>
+                        {renderSelecterClient()}
+                    </div>
+                    <div>
+                        <table className="table-fixed w-full border-2 border-gray-400">
+                            <thead>
+                                <tr className="bg-gray-200">
+                                    <th className="w-20">Quant.</th>
+                                    <th className="w-20">Unid.</th>
+                                    <th className="w-[260px]">Descrição dos Serviços</th>
+                                    <th>Preço Unitário</th>
+                                    <th>Preço Total R$</th>
+                                </tr>
+                            </thead>
 
-                                <tbody >
-                                    <tr >
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300 w-2/5">Locação de impressora</td>
-                                        <td className="border border-gray-300 w-1/5"></td>
-                                        <td className="border border-gray-300 w-1/5">381,06</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </main>
+                            <tbody >
+                                <tr >
+                                    <td></td>
+                                    <td></td>
+                                    <td>Locação de impressora</td>
+                                    <td></td>
+                                    <td>{inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         );
@@ -240,20 +271,20 @@ const Chamados = () => {
         <>
             <Header />
             <section className="flex flex-col items-center">
-                <div className="tables flex">
-                    <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8 cursor-pointer" onClick={() => alternarAba('chamados')}>
+                <div className="tables flex *:flex *:flex-col *:items-center *:p-8 *:border-2 *:border-black-900 *:rounded-md *:m-8 *:cursor-pointer">
+                    <div onClick={() => alternarAba('chamados')}>
                         <h1>Chamados</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8 cursor-pointer" onClick={() => alternarAba('clientes')}>
+                    <div onClick={() => alternarAba('clientes')}>
                         <h1>Clientes</h1>
                         <i className="fa-solid fa-user"></i>
                     </div>
-                    <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8 cursor-pointer" onClick={() => alternarAba('equipamentos')}>
+                    <div onClick={() => alternarAba('equipamentos')}>
                         <h1>Equipamentos</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <div className="flex flex-col items-center p-8 border-2 border-black-900 rounded-md m-8 cursor-pointer" onClick={() => alternarAba('recibos')}>
+                    <div onClick={() => alternarAba('recibos')}>
                         <h1>Recibos Locação</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
@@ -280,4 +311,4 @@ const Chamados = () => {
     );
 };
 
-export default Chamados;
+export default Chamados;    
