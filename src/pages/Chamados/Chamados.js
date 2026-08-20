@@ -173,9 +173,9 @@ const Chamados = () => {
                 <div className="flex justify-center">
                     <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500">imprimir</button>
                 </div>
-                <div ref={contentDocument} className="p-4 w-[1080px]">
-                    <div className="flex items-center content-center">
-                        <div className="w-1/2">
+                <div ref={contentDocument}>
+                    <div>
+                        <div>
                             <h1>TELEMAQ</h1>
                             <p>RUA MARIANO PROCÓPIO 65, CENTRO</p>
                             <p>{"(32)98419-5001"}</p>
@@ -191,19 +191,31 @@ const Chamados = () => {
                             <p>Nº: 001117</p>
                         </div>
                     </div>
-                    <div className="cliente">
-
-                    </div>
                     <main>
                         <div>
-                            <table className="table-auto border border-gray-400">
+                            <table className="table-fixed w-full border border-gray-400">
+                                <tr className="border">Cliente: telemaq</tr>
+                                <td className="border">
+                                    <tr className="border">Endereco: ppraca arioca</tr>
+                                    <tr className="border">municipio:</tr>
+                                    <tr className="border">cnpj</tr>
+                                </td>
+                                <td className="border">
+                                    <tr className="border">Bairro:</tr>
+                                    <tr className="border">Estado:</tr>
+                                    <tr className="border">Inscricao:</tr>
+                                </td>
+                            </table>
+                        </div>
+                        <div>
+                            <table className="table-fixed w-full border border-gray-400">
                                 <thead>
                                     <tr className="bg-gray-200">
                                         <th className="border border-gray-300">Quant.</th>
                                         <th className="border border-gray-300">Unid.</th>
-                                        <th className="border border-gray-300 w-9">Descrição dos Serviços</th>
-                                        <th className="border border-gray-300">Preço Unitário</th>
-                                        <th className="border border-gray-300">Preço Total R$</th>
+                                        <th className="border border-gray-300 w-2/5">Descrição dos Serviços</th>
+                                        <th className="border border-gray-300 w-1/5">Preço Unitário</th>
+                                        <th className="border border-gray-300 w-1/5">Preço Total R$</th>
                                     </tr>
                                 </thead>
 
@@ -211,18 +223,9 @@ const Chamados = () => {
                                     <tr >
                                         <td className="border border-gray-300"></td>
                                         <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300 w-9">Locação de impressora</td>
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300">381,06</td>
-                                    </tr>
-                                </tbody>
-                                <tbody >
-                                    <tr >
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300"></td>
-                                        <td className="border border-gray-300"></td>
+                                        <td className="border border-gray-300 w-2/5">Locação de impressora</td>
+                                        <td className="border border-gray-300 w-1/5"></td>
+                                        <td className="border border-gray-300 w-1/5">381,06</td>
                                     </tr>
                                 </tbody>
                             </table>
