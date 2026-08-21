@@ -165,12 +165,16 @@ const Chamados = () => {
     const GerarRecibos = () => {
         const contentDocument = useRef();
 
+        const dataHoje = new Date()
+        const data = dataHoje.toLocaleDateString('pt-BR');
+
         const handlePrint = useReactToPrint({
             contentRef: contentDocument,
         });
 
         const [inputCodigo, setInputCodigo] = useState("");
         const [inputValor, setInputValor] = useState("");
+        const [inputNumeroNota, setNumeroNota] = useState("");
         const [codigoCliente, setCodigoCliente] = useState("");
 
         const handleInserirCliente = (e) => {
@@ -186,24 +190,37 @@ const Chamados = () => {
 
             if (!codigoCliente) {
                 return (
-                    <div>
-                        <p><strong>Fantasia:</strong> </p>
-                        <p><strong>CNPJ:</strong> </p>
-                        <p><strong>Cidade:</strong> </p>
-                        <p><strong>Telefone:</strong> </p>
-                    </div>
+                    <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2 *:font-bold">
+                        <tr>_</tr>
+                        <td>
+                            <tr>Endereco:</tr>
+                            <tr>municipio:</tr>
+                            <tr>cnpj:</tr>
+                        </td>
+                        <td>
+                            <tr>Bairro:</tr>
+                            <tr>Estado:</tr>
+                            <tr>Inscricao:</tr>
+                        </td>
+                    </table>
                 )
             } else {
                 return (
-                    <div>
-                        <h3>{cliente.nome}</h3>
-                        <p><strong>Fantasia:</strong> {cliente.nome_fantasia}</p>
-                        <p><strong>CNPJ:</strong> {cliente.cnpj_cpf}</p>
-                        <p><strong>Cidade:</strong> {cliente.cidade} - {cliente.uf}</p>
-                        <p><strong>Telefone:</strong> {cliente.telefone}</p>
-                    </div>
+                    <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2">
+                        <tr className="font-bold text-xl">{`__${cliente.nome}`}</tr>
+                        <td>
+                            <tr><strong>Endereco: </strong> {cliente.endereco}</tr>
+                            <tr><strong>municipio: </strong> {cliente.cidade}</tr>
+                            <tr><strong>cnpj: </strong> {cliente.cnpj_cpf}</tr>
+                        </td>
+                        <td>
+                            <tr><strong>Bairro: </strong> {cliente.bairro}</tr>
+                            <tr><strong>Estado: </strong> {cliente.uf}</tr>
+                            <tr><strong>Inscricao: </strong> {cliente.inscr_ident}</tr>
+                        </td>
+                    </table>
                 );
-            }   
+            }
         }
 
         return (
@@ -212,29 +229,32 @@ const Chamados = () => {
                     <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500">imprimir</button>
                 </div>
 
-                <form>
-                    <input className="border-2" placeholder="Digite o codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)}></input>
-                    <input className="border-2" placeholder="Digite o valor" value={inputValor} onChange={(e) => setInputValor(e.target.value)}></input>
+                <form className="*: border-2 p-2 radious-">
+                    <input placeholder="Digite o codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)}></input>
+                    <input placeholder="Digite o valor" value={inputValor} onChange={(e) => setInputValor(e.target.value)}></input>
+                    <input placeholder="Digite Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)}></input>
                     <button type="submit" onClick={handleInserirCliente}>Inserir</button>
                 </form>
 
-                <div ref={contentDocument} className="w-[800px] p-8 *:mb-8">
-                    <div className="flex ">
-                        <div className="*:text-sm">
-                            <h1>TELEMAQ</h1>
-                            <p>RUA MARIANO PROCÓPIO 65, CENTRO</p>
-                            <p>{"(32)98419-5001"}</p>
-                            <p>Cep. 36.045-010 - Juiz de Fora - Minas Gerais</p>
-                            <p>CNPJ: 05.370.410/0001-48 - Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
-                            <p>Emissão: 05/01/2026</p>
-                        </div>
-                        <div className="*:text-sm w-1/2">
-                            <p>RECIBO DE SERVIÇO</p>
+                <div ref={contentDocument} className="w-[800px] p-8 border *:mb-4">
+                    <h1 className="text-center font-black text-4xl text-blue-800 mb-2">TELEMAQ COPIADORAS</h1>
+                    <div className="flex">
+                        <div className="w-1/2">
+                            <p className="text-xl font-bold">RECIBO DE SERVIÇO</p>
+                            <p className="font-semibold">ALUGUEL DE IMPRESSORA E MULTIFUNCIONAL</p>
                             <p>Natureza da Operação: Prestação de Serviços</p>
-                            <p>ALUGUEL DE IMPRESSORA E MULTIFUNCIONAL</p>
-                            <p>DISPENSADA DE EMISSÃO DE NOTA FISCAL DE SERVIÇO CONFORME LEI COMPLEMENTAR 116 DE 31/07/2003</p>
-                            <p>Nº: 001117</p>
+                            <p className="">{"(32)98419-5001"} / {"(32)98801-5053"}</p>
                         </div>
+                        <div className="w-1/2">
+                            <p className="">RUA MARIANO PROCÓPIO 65, CENTRO - Cep. 36.045-010 - Juiz de Fora - Minas Gerais</p>
+                            <p className="">CNPJ: 05.370.410/0001-48 - Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
+                        </div>
+                    </div>
+                    <p className="font-semibold text-red-700 text-sm text-center">DISPENSADA DE EMISSÃO DE NOTA FISCAL DE SERVIÇO CONFORME LEI COMPLEMENTAR 116 DE 31/07/2003</p>
+                    <p className="text-red-700 text-xl text-center font-bold">Recibo valido com comprovacao de pagamento</p>
+                    <div className="flex justify-between *:font-bold *:text-xl">
+                        <p>Emissão: {data}</p>
+                        <p>Nº: {inputNumeroNota ? inputNumeroNota : "00000"}</p>
                     </div>
                     <div>
                         {renderSelecterClient()}
@@ -252,16 +272,26 @@ const Chamados = () => {
                             </thead>
 
                             <tbody >
-                                <tr >
+                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td>Locação de impressora</td>
                                     <td></td>
                                     <td>{inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</td>
                                 </tr>
+                                {[...Array(5)].map((_, index) => (
+                                    <tr className="*:p-5">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
+                    <p className="float-right font-bold underline text-xl">Total deste recibo: {inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</p>
                 </div>
             </div>
         );
