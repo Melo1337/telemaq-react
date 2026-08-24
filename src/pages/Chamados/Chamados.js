@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import { fetchApi } from "../../services/requestApiDataBase";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
+import RenderizarContador from '../../components/contador'
 
 const Chamados = () => {
     const navigate = useNavigate();
@@ -318,6 +319,10 @@ const Chamados = () => {
                         <h1>Recibos Locação</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
+                    <div onClick={() => alternarAba('contador')}>
+                        <h1>Contadores</h1>
+                        <i className="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
                 </div>
 
                 <div className="flex flex-col items-center w-full">
@@ -335,6 +340,7 @@ const Chamados = () => {
                     {abaAtiva === 'clientes' && renderizarClientes()}
                     {abaAtiva === 'equipamentos' && renderizarEquipamentos()}
                     {abaAtiva === 'recibos' && <GerarRecibos />}
+                    {abaAtiva === 'contador' && <RenderizarContador />}
                 </div>
             </section>
         </>
