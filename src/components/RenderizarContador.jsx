@@ -23,9 +23,8 @@ function RenderizarContador() {
     };
 
     const enviarDados = async (e) => {
-        e.preventDefault(); // Agora funciona corretamente cortando o envio nativo
+        e.preventDefault();
 
-        // Tratando os tipos de dados (Garante null se o campo estiver vazio para não quebrar o Number)
         const payload = {
             CODIGO_CLIENTE: form.CODIGO_CLIENTE ? Number(form.CODIGO_CLIENTE) : null,
             N_SERIE: form.N_SERIE,
@@ -43,34 +42,35 @@ function RenderizarContador() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/historico', {
+            const response = await fetch('https://vicarly-undeprived-keira.ngrok-free.dev/api/contagem', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
-            const data = await response.json();
+            // 1. Verifica o tipo de conteúdo antes de ler como JSON
+            const contentType = response.headers.get("content-type");
+            let data = {};
+
+            if (contentType && contentType.includes("application/json")) {
+                data = await response.json();
+            } else {
+                // Se não for JSON, lê como texto para descobrir o que o servidor mandou
+                const textoErro = await response.text();
+                console.error("Resposta não-JSON do servidor:", textoErro);
+                alert(`Erro no servidor (Status ${response.status}). Verifique o console.`);
+                return; // Interrompe a execução
+            }
 
             if (response.ok) {
-                alert(data.mensagem);
-                // Reseta o formulário limpando os campos
+                alert(data.mensagem || 'Registro salvo com sucesso!');
                 setForm({
-                    CODIGO_CLIENTE: '',
-                    N_SERIE: "",
-                    DATA_CONTAGEM: "",
-                    CONTAGEM: "",
-                    N_COPIAS: "",
-                    COPIAS_ALEM: '',
-                    VALOR_ALEM: '',
-                    VALOR_PAGAR: '',
-                    PAGAMENTO: "",
-                    DATA_PAGAMENTO: "",
-                    CUSTO_FRANQUIA: '',
-                    CUSTO_ALEM: '',
+                    CODIGO_CLIENTE: '', N_SERIE: "", DATA_CONTAGEM: "", CONTAGEM: "",
+                    N_COPIAS: "", COPIAS_ALEM: '', VALOR_ALEM: '', VALOR_PAGAR: '',
+                    PAGAMENTO: "", DATA_PAGAMENTO: "", CUSTO_FRANQUIA: '', CUSTO_ALEM: '',
                     N_COPIAS_FRANQUIA: ''
                 });
             } else {
-                // Alinhado com o retorno do backend: data.error ou data.erro
                 alert(`Erro: ${data.error || data.erro || 'Falha desconhecida'}`);
             }
         } catch (err) {
@@ -83,7 +83,7 @@ function RenderizarContador() {
         <>
             {/* CORREÇÃO: Passando apenas a referência da função sem colocar parênteses () */}
             <form onSubmit={enviarDados} className="flex-col" style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
-                
+
                 {/* CORREÇÃO EM TODOS OS INPUTS: Adicionado o atributo name correspondente ao estado */}
                 <div>
                     <input type="number" name="CODIGO_CLIENTE" placeholder="Código do Cliente" value={form.CODIGO_CLIENTE} onChange={handleInputChange} required />
@@ -124,7 +124,7 @@ function RenderizarContador() {
                 <div>
                     <input type="number" name="N_COPIAS_FRANQUIA" placeholder="Nº Cópias Franquia" value={form.N_COPIAS_FRANQUIA} onChange={handleInputChange} />
                 </div>
-                
+
                 <button type="submit" style={{ cursor: 'pointer', padding: '8px' }}>
                     Cadastrar Registro
                 </button>

@@ -4,13 +4,14 @@ import Header from "../../components/Header/Header";
 import { fetchApi } from "../../services/requestApiDataBase";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-import RenderizarContador from '../../components/contador'
+import RenderizarContador from '../../components/RenderizarContador'
+import RenderizarClientes from '../../components/renderizarClientes'
 
 const Chamados = () => {
     const navigate = useNavigate();
     const [repositoryChamados, setRepositoryChamados] = useState([]);
-    const [repositoryClientes, setRepositoryClientes] = useState([]);
     const [repositoryEquipamentos, setRepositoryEquipamentos] = useState([]);
+    const [repositoryClientes, setRepositoryClientes] = useState([]);
     const [abaAtiva, setAbaAtiva] = useState(null);
     const [search, setSearch] = useState("");
 
@@ -33,11 +34,11 @@ const Chamados = () => {
                 const dataChamados = await fetchApi('/chamados');
                 setRepositoryChamados(dataChamados);
 
-                const dataClientes = await fetchApi('/tables/clientes');
-                setRepositoryClientes(dataClientes.SEM_GRUPO || dataClientes);
-
                 const dataEquipamentos = await fetchApi('/tables/equipamentos');
                 setRepositoryEquipamentos(dataEquipamentos.SEM_GRUPO || dataEquipamentos);
+
+                const dataClientes = await fetchApi('/tables/clientes');
+                setRepositoryClientes(dataClientes.SEM_GRUPO || dataClientes);
 
             } catch (error) {
                 console.error("Status do Erro:", error.response?.status);
@@ -111,29 +112,6 @@ const Chamados = () => {
         ));
     };
 
-    const renderizarClientes = () => {
-        const clientesFiltrados = search
-            ? repositoryClientes.filter(cliente => {
-                const termo = search.toLowerCase();
-                return (
-                    cliente.nome?.toLowerCase().includes(termo) ||
-                    cliente.codigo?.toString().includes(termo) ||
-                    cliente.cnpj_cpf?.toString().includes(termo)
-                );
-            })
-            : repositoryClientes;
-
-        return clientesFiltrados.map((cliente) => (
-            <div key={cliente.codigo} className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
-                <p className="text-blue-500 font-bold">{cliente.codigo}.</p>
-                <p className="ms-4"><strong>Nome: </strong>{cliente.nome}</p>
-                {cliente.nome_fantasia !== null && (<p className="ms-4"><strong>Fantasia: </strong>{cliente.nome_fantasia}</p>)}
-                <p className="ms-4"><strong>Doc: </strong>{cliente.cnpj_cpf}</p>
-                <p className="ms-4"><strong>Tel: </strong>{cliente.telefone}</p>
-            </div>
-        ));
-    };
-
     const renderizarEquipamentos = () => {
         const equipFiltrados = search
             ? repositoryEquipamentos.filter(equip => {
@@ -168,6 +146,9 @@ const Chamados = () => {
 
         const dataHoje = new Date()
         const data = dataHoje.toLocaleDateString('pt-BR');
+        const diaAtual = dataHoje.getDate();
+        const mesAtual = new Date().getMonth() + 1;
+        const anoAtual = new Date().getFullYear();
 
         const handlePrint = useReactToPrint({
             contentRef: contentDocument,
@@ -244,17 +225,19 @@ const Chamados = () => {
                             <p className="text-xl font-bold">RECIBO DE SERVIÇO</p>
                             <p className="font-semibold">ALUGUEL DE IMPRESSORA E MULTIFUNCIONAL</p>
                             <p>Natureza da Operação: Prestação de Serviços</p>
-                            <p className="">{"(32)98419-5001"} / {"(32)98801-5053"}</p>
+                            <p>{"(32)98419-5001"} / {"(32)98801-5053"}</p>
                         </div>
                         <div className="w-1/2">
-                            <p className="">RUA MARIANO PROCÓPIO 65, CENTRO - Cep. 36.045-010 - Juiz de Fora - Minas Gerais</p>
-                            <p className="">CNPJ: 05.370.410/0001-48 - Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
+                            <p>RUA MARIANO PROCÓPIO 65, CENTRO</p>
+                            <p>Cep. 36.045-010 - Juiz de Fora - Minas Gerais</p>
+                            <p>CNPJ: 05.370.410/0001-48</p>
+                            <p className="text-sm">Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
                         </div>
                     </div>
                     <p className="font-semibold text-red-700 text-sm text-center">DISPENSADA DE EMISSÃO DE NOTA FISCAL DE SERVIÇO CONFORME LEI COMPLEMENTAR 116 DE 31/07/2003</p>
                     <p className="text-red-700 text-xl text-center font-bold">Recibo valido com comprovacao de pagamento</p>
                     <div className="flex justify-between *:font-bold *:text-xl">
-                        <p>Emissão: {data}</p>
+                        <p>Emissão: {(Number(diaAtual) > 25) ? `${"1"}/${mesAtual + 1}/${anoAtual}` : data}</p>
                         <p>Nº: {inputNumeroNota ? inputNumeroNota : "00000"}</p>
                     </div>
                     <div>
@@ -272,7 +255,7 @@ const Chamados = () => {
                                 </tr>
                             </thead>
 
-                            <tbody >
+                            <tbody>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -281,7 +264,7 @@ const Chamados = () => {
                                     <td>{inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</td>
                                 </tr>
                                 {[...Array(5)].map((_, index) => (
-                                    <tr className="*:p-5">
+                                    <tr className="*:p-5 even:bg-[#eeeeee]">
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -337,7 +320,7 @@ const Chamados = () => {
                     )}
 
                     {abaAtiva === 'chamados' && renderizarChamados()}
-                    {abaAtiva === 'clientes' && renderizarClientes()}
+                    {abaAtiva === 'clientes' && <RenderizarClientes search={search} />}
                     {abaAtiva === 'equipamentos' && renderizarEquipamentos()}
                     {abaAtiva === 'recibos' && <GerarRecibos />}
                     {abaAtiva === 'contador' && <RenderizarContador />}

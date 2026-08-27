@@ -92,7 +92,7 @@ td {
     text-align: left;
 }
 
-tbody tr:nth-child(even) {
+.feature table tbody tr:nth-child(even) {
     background-color: #c4c4c4;
 }
 
