@@ -4,8 +4,6 @@ import Header from "../../components/Header/Header";
 import { fetchApi } from "../../services/requestApiDataBase";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-import RenderizarContador from '../../components/RenderizarContador'
-import RenderizarClientes from '../../components/renderizarClientes'
 
 const Chamados = () => {
     const navigate = useNavigate();
@@ -164,19 +162,6 @@ const Chamados = () => {
         }
 
         const renderSelecterClient = () => {
-
-            const setores = {
-                "setores": [
-                    "Administração",
-                    "Assistência Social",
-                    "Colorida",
-                    "Educação Infantil",
-                    "Ensino Fundamental",
-                    "Postos de Saúde",
-                    "Sec. De Educação",
-                    "Sec. de Saúde"
-                ]
-            }
 
             const listaClientes = repositoryClientes.SEM_GRUPO || repositoryClientes
 
