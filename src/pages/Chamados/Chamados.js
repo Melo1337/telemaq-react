@@ -113,17 +113,16 @@ const Chamados = () => {
     };
 
     const renderizarEquipamentos = () => {
-        const equipFiltrados = search
-            ? repositoryEquipamentos.filter(equip => {
-                const termo = search.toLowerCase().replace(/\s+/g, '');
-                const normalizar = (valor) => valor ? valor.toString().toLowerCase().replace(/\s+/g, '') : '';
-                return (
-                    normalizar(equip.codigo).includes(termo) ||
-                    normalizar(equip.descricao).includes(termo) ||
-                    normalizar(equip.modelo).includes(termo) ||
-                    normalizar(equip.n_serie).includes(termo)
-                );
-            })
+        const equipFiltrados = search ? repositoryEquipamentos.filter(equip => {
+            const termo = search.toLowerCase().replace(/\s+/g, '');
+            const normalizar = (valor) => valor ? valor.toString().toLowerCase().replace(/\s+/g, '') : '';
+            return (
+                normalizar(equip.codigo).includes(termo) ||
+                normalizar(equip.descricao).includes(termo) ||
+                normalizar(equip.modelo).includes(termo) ||
+                normalizar(equip.n_serie).includes(termo)
+            );
+        })
             : repositoryEquipamentos;
 
         if (equipFiltrados.length === 0) {
@@ -166,6 +165,19 @@ const Chamados = () => {
 
         const renderSelecterClient = () => {
 
+            const setores = {
+                "setores": [
+                    "Administração",
+                    "Assistência Social",
+                    "Colorida",
+                    "Educação Infantil",
+                    "Ensino Fundamental",
+                    "Postos de Saúde",
+                    "Sec. De Educação",
+                    "Sec. de Saúde"
+                ]
+            }
+
             const listaClientes = repositoryClientes.SEM_GRUPO || repositoryClientes
 
             const cliente = listaClientes.find(c => Number(c.codigo) === Number(codigoCliente));
@@ -173,7 +185,7 @@ const Chamados = () => {
             if (!codigoCliente) {
                 return (
                     <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2 *:font-bold">
-                        <tr>_</tr>
+                        <tr></tr>
                         <td>
                             <tr>Endereco:</tr>
                             <tr>municipio:</tr>
@@ -189,7 +201,7 @@ const Chamados = () => {
             } else {
                 return (
                     <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2">
-                        <tr className="font-bold text-xl">{`__${cliente.nome}`}</tr>
+                        <tr className="font-bold text-xl">{codigoCliente === "94" ? "verificar" : `${cliente.nome}`}</tr>
                         <td>
                             <tr><strong>Endereco: </strong> {cliente.endereco}</tr>
                             <tr><strong>municipio: </strong> {cliente.cidade}</tr>
@@ -206,15 +218,11 @@ const Chamados = () => {
         }
 
         return (
-            <div>
-                <div className="flex justify-center">
-                    <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500">imprimir</button>
-                </div>
-
-                <form className="*: border-2 p-2 radious-">
-                    <input placeholder="Digite o codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)}></input>
-                    <input placeholder="Digite o valor" value={inputValor} onChange={(e) => setInputValor(e.target.value)}></input>
-                    <input placeholder="Digite Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)}></input>
+            <div className="flex flex-col items-center justify-center">
+                <form className="*:p-2 *:radious- *:border *:border-gray-500">
+                    <input className="w-48 mr-2" placeholder="Nome do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)}></input>
+                    <input className="w-48 mr-2" placeholder="Valor da nota" value={inputValor} onChange={(e) => setInputValor(e.target.value)}></input>
+                    <input className="w-48 mr-2" placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)}></input>
                     <button type="submit" onClick={handleInserirCliente}>Inserir</button>
                 </form>
 
@@ -222,20 +230,20 @@ const Chamados = () => {
                     <h1 className="text-center font-black text-4xl text-blue-800 mb-2">TELEMAQ COPIADORAS</h1>
                     <div className="flex">
                         <div className="w-1/2">
-                            <p className="text-xl font-bold">RECIBO DE SERVIÇO</p>
+                            <p className="text-xl font-bold">RECIBO DE LOCAÇÃO</p>
                             <p className="font-semibold">ALUGUEL DE IMPRESSORA E MULTIFUNCIONAL</p>
-                            <p>Natureza da Operação: Prestação de Serviços</p>
+                            <p>Natureza da Operação: Locação</p>
                             <p>{"(32)98419-5001"} / {"(32)98801-5053"}</p>
                         </div>
                         <div className="w-1/2">
                             <p>RUA MARIANO PROCÓPIO 65, CENTRO</p>
                             <p>Cep. 36.045-010 - Juiz de Fora - Minas Gerais</p>
                             <p>CNPJ: 05.370.410/0001-48</p>
-                            <p className="text-sm">Insc. Estadual 367 220533 0013 - CMC 093 027/00-1</p>
+                            <p className="text-sm">Insc. Estadual 3672205330013 - CMC 093 027/00-1</p>
                         </div>
                     </div>
                     <p className="font-semibold text-red-700 text-sm text-center">DISPENSADA DE EMISSÃO DE NOTA FISCAL DE SERVIÇO CONFORME LEI COMPLEMENTAR 116 DE 31/07/2003</p>
-                    <p className="text-red-700 text-xl text-center font-bold">Recibo valido com comprovacao de pagamento</p>
+                    <p className="text-red-700 text-xl text-center font-bold">Recibo válido com comprovação de pagamento</p>
                     <div className="flex justify-between *:font-bold *:text-xl">
                         <p>Emissão: {(Number(diaAtual) > 25) ? `${"1"}/${mesAtual + 1}/${anoAtual}` : data}</p>
                         <p>Nº: {inputNumeroNota ? inputNumeroNota : "00000"}</p>
@@ -247,27 +255,18 @@ const Chamados = () => {
                         <table className="table-fixed w-full border-2 border-gray-400">
                             <thead>
                                 <tr className="bg-gray-200">
-                                    <th className="w-20">Quant.</th>
-                                    <th className="w-20">Unid.</th>
-                                    <th className="w-[260px]">Descrição dos Serviços</th>
-                                    <th>Preço Unitário</th>
-                                    <th>Preço Total R$</th>
+                                    <th>Descriminação</th>
+                                    <th>Preço Total</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
                                     <td>Locação de impressora</td>
-                                    <td></td>
                                     <td>{inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</td>
                                 </tr>
                                 {[...Array(5)].map((_, index) => (
                                     <tr className="*:p-5 even:bg-[#eeeeee]">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
                                         <td></td>
                                         <td></td>
                                     </tr>
@@ -276,6 +275,9 @@ const Chamados = () => {
                         </table>
                     </div>
                     <p className="float-right font-bold underline text-xl">Total deste recibo: {inputValor ? (`R$ ${inputValor},00`) : "R$ 0,00"}</p>
+                </div>
+                <div>
+                    <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500 m-8 w-56">imprimir</button>
                 </div>
             </div>
         );
@@ -290,10 +292,10 @@ const Chamados = () => {
                         <h1>Chamados</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <div onClick={() => alternarAba('clientes')}>
+                    {/*<div onClick={() => alternarAba('clientes')}>
                         <h1>Clientes</h1>
                         <i className="fa-solid fa-user"></i>
-                    </div>
+                    </div>*/}
                     <div onClick={() => alternarAba('equipamentos')}>
                         <h1>Equipamentos</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
@@ -302,10 +304,10 @@ const Chamados = () => {
                         <h1>Recibos Locação</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <div onClick={() => alternarAba('contador')}>
+                    {/*<div onClick={() => alternarAba('contador')}>
                         <h1>Contadores</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
+                    </div>*/}
                 </div>
 
                 <div className="flex flex-col items-center w-full">
@@ -320,10 +322,10 @@ const Chamados = () => {
                     )}
 
                     {abaAtiva === 'chamados' && renderizarChamados()}
-                    {abaAtiva === 'clientes' && <RenderizarClientes search={search} />}
+                    {/*{abaAtiva === 'clientes' && <RenderizarClientes search={search} />}*/}
                     {abaAtiva === 'equipamentos' && renderizarEquipamentos()}
                     {abaAtiva === 'recibos' && <GerarRecibos />}
-                    {abaAtiva === 'contador' && <RenderizarContador />}
+                    {/*{abaAtiva === 'contador' && <RenderizarContador />}*/}
                 </div>
             </section>
         </>

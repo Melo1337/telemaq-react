@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header"
 import { useParams } from 'react-router-dom';
-import {fetchApi} from '../services/requestApiDataBase'
+import { fetchApi } from '../services/requestApiDataBase'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,11 +26,21 @@ function Cliente() {
 
     const normalizar = (texto) => texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : '';
 
-    const equipamentos = repositoryEquipamentos.filter(equipamento => normalizar(equipamento.descricao).includes(normalizar(cliente.nome))) 
+    const equipamentos = repositoryEquipamentos.filter(equipamento => normalizar(equipamento.descricao).includes(normalizar(cliente.nome)))
 
-    const nomeSetores = equipamentos.map(equipamento => equipamento.descricao);
+    const equipamentosReduce = equipamentos.reduce((acumulador, itemAtual) => {
+        const chave = itemAtual.descricao;
 
-    console.log(nomeSetores);
+        if (!acumulador[chave]) {
+            acumulador[chave] = [];
+        }
+
+        acumulador[chave].push(itemAtual);
+
+        return acumulador;
+    }, []);
+
+    console.log(equipamentosReduce)
     
 
     return (
@@ -41,7 +51,7 @@ function Cliente() {
                     <div className="w-3/4 flex justify-center">
                         <div>
                             <p>Codigo: {cliente.codigo}</p>
-                            <p>Nome: {cliente.nome}</p>   
+                            <p>Nome: {cliente.nome}</p>
                             <p>telefone: {cliente.telefone}</p>
                             <p>telef_contato: {cliente.telef_contato}</p>
                             <p>contato: {cliente.contato}</p>
@@ -63,7 +73,18 @@ function Cliente() {
                     <p>User not found</p>
                 )}
 
-                
+                {equipamentosReduce ? (
+                    <div>
+                    {equipamentosReduce && (Object.entries(equipamentosReduce).map(([setor, arraySetor])=>(
+                        <div key={setor}>
+                            <p>Setor: {setor}</p>
+                            {arraySetor.map((equipamento)=>(
+                                <p>{equipamento.n_serie}</p>
+                            ))}
+                        </div>
+                    )))}
+                </div>
+            ) : <p>Nao foi encontrado impressoras!</p>}
             </div>
         </>
     )
