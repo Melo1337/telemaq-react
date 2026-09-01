@@ -1,4 +1,4 @@
-import Header from '../../components/Header/Header';
+import Header from '../components/Header/Header';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -20,7 +20,7 @@ const handleSubmit = async (event) => {
     });
 
     localStorage.setItem('token', response.data.token);
-    navigate('/chamados');
+    navigate('/control');
     
   } catch (error) {
     if (error.response) {

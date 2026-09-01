@@ -1,15 +1,15 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { fetchApi } from '../../services/requestApiDataBase';
-import ButtomWhatsapp from '../../components/ButtomWhatsapp/ButtomWhatsapp';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import { fetchApi } from '../services/requestApiDataBase';
+import ButtomWhatsapp from '../components/ButtomWhatsapp/ButtomWhatsapp';
 
 function Resultado() {
   const [searchParams] = useSearchParams();
-  const busca = searchParams.get('busca')?.toLowerCase() || ""; // Garante que a busca seja minúscula
+  const busca = searchParams.get('busca')?.toLowerCase() || "";
 
-  const [dados, setDados] = useState([]); // Inicia como null para saber que está carregando
+  const [dados, setDados] = useState([]);
 
   useEffect(() => {
     const getApi = async () => {
@@ -17,12 +17,10 @@ function Resultado() {
       setDados(data);
     };
     getApi();
-  }, []); // [] faz com que API seja chamada apenas uma vez
+  }, []);
 
-  // Se os dados ainda não carregaram, exibe mensagem
   if (!dados) return <p>Carregando...</p>;
 
-  // Transforma e filtra os dados
   const todosProdutos = Object.values(dados).flat();
 
   const resultado = todosProdutos.filter(produto =>

@@ -20,25 +20,23 @@ const RenderizarChamados = () => {
     }, [])
 
     return Object.entries(repositoryChamados).map(([chave, chamado]) => (
-        <div key={chave} className="m-4 border-2 border-gray-300 rounded-md p-8 md:m-10">
+        <div key={chave} className="m-4 border-2 border-gray-300 rounded-md p-4 md:m-10 w-10/12">
             <div className="flex justify-between">
                 <p><strong>O.S. Número </strong>{chamado.codigo}</p>
                 <p><strong>Data: </strong>{chamado.data_entrada?.split('T')[0].split('-').reverse().join('/')}</p>
             </div>
             <hr className="border-none h-[2px] bg-[#bdbdbd] my-5"></hr>
             <div className="md:flex justify-between">
-                <div>
+                <div className="p-3">
                     <p><strong>Cod. Cliente: </strong>{chamado.codigo_cliente}</p>
                     <p><strong>Cliente: </strong>{chamado.nome_cliente}</p>
                     <p><strong>solicitante: </strong>{chamado.solicitante}</p>
                     <p><strong>telefone: </strong>{chamado.telefone}</p>
                 </div>
                 {chamado.codigo_equipamento === 0 ? (
-                    <div className="printerModel">
                         <p><strong>Modelo equipamento: </strong>{chamado.nome_equipamento}</p>
-                    </div>
                 ) : (
-                    <div className="printerModel">
+                    <div className="printerModel p-3">
                         <p><strong>Cod. equipamento: </strong>{chamado.codigo_equipamento}</p>
                         <p><strong>Nome equipamento: </strong>{chamado.nome_equipamento}</p>
                         <p><strong>Marca: </strong>{chamado.marca_equipamento}</p>
@@ -87,12 +85,12 @@ const RenderizarEquipamentos = ({ search }) => {
     }
 
     return equipFiltrados.map((equip) => (
-        <div key={equip.codigo || equip.n_serie} className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
+        <div key={equip.codigo || equip.n_serie} className="flex bg-gray-200 rounded-md p-4 mb-4 w-4/5 *:ms-4">
             <p className="text-blue-500 font-bold">{equip.codigo}.</p>
-            <p className="ms-4"><strong>descrição: </strong>{equip.descricao}</p>
-            <p className="ms-4"><strong>marca: </strong>{equip.marca}</p>
-            <p className="ms-4"><strong>modelo: </strong>{equip.modelo}</p>
-            <p className="ms-4"><strong>n_serie: </strong>{equip.n_serie}</p>
+            <p className="w-96"><strong>Descrição: </strong>{equip.descricao}</p>
+            <p><strong>Marca: </strong>{equip.marca}</p>
+            <p><strong>Modelo: </strong>{equip.modelo}</p>
+            <p><strong>N° serie: </strong>{equip.n_serie}</p>
         </div>
     ));
 };
@@ -133,7 +131,7 @@ const GerarRecibos = () => {
         if (listaClientes && listaClientes.length > 0) {
             const cliente = listaClientes.find(c => Number(c.codigo) === Number(codigoCliente));
             if (cliente) {
-                setNomeCliente(codigoCliente === "94" ? "verificar" : cliente.nome);
+                setNomeCliente(cliente.nome);
             } else {
                 setNomeCliente("Cliente Invalido");
             }
@@ -151,6 +149,12 @@ const GerarRecibos = () => {
         e.preventDefault();
         setCodigoCliente(inputCodigo);
     };
+
+    const verificarCliente = () => {
+        if (codigoCliente === "94") return <td colSpan="2">{nomeCliente} - <input></input></td>
+
+        return  <td colSpan="2">{nomeCliente}</td>
+    }
 
     const renderSelecterClient = () => {
         const listaClientes = repositoryClientes.SEM_GRUPO || repositoryClientes;
@@ -183,7 +187,7 @@ const GerarRecibos = () => {
                     <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2">
                         <tbody>
                             <tr className="font-bold text-xl border-2 border-gray-400">
-                                <td colSpan="2">{codigoCliente === "94" ? "verificar" : `${cliente.nome}`}</td>
+                                {verificarCliente()}
                             </tr>
                             <tr>
                                 <td>

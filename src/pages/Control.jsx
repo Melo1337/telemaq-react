@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "./../components/Header/Header";
 import axios from "axios";
-import {RenderizarChamados, RenderizarEquipamentos, GerarRecibos} from '../../components/AdmComponents'
+import {RenderizarChamados, RenderizarEquipamentos, GerarRecibos} from '../components/AdmComponents'
+import RenderizarClientes from '../components/renderizarClientes'
 
 const Chamados = () => {
     const navigate = useNavigate();
@@ -53,10 +54,10 @@ const Chamados = () => {
                         <h1>Chamados</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    {/*<div onClick={() => alternarAba('clientes')}>
+                    <div onClick={() => alternarAba('clientes')}>
                         <h1>Clientes</h1>
                         <i className="fa-solid fa-user"></i>
-                    </div>*/}
+                    </div>
                     <div onClick={() => alternarAba('equipamentos')}>
                         <h1>Equipamentos</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
@@ -83,7 +84,7 @@ const Chamados = () => {
                     )}
 
                     {abaAtiva === 'chamados' && <RenderizarChamados />}
-                    {/*{abaAtiva === 'clientes' && <RenderizarClientes search={search} />}*/}
+                    {abaAtiva === 'clientes' && <RenderizarClientes search={search} />}
                     {abaAtiva === 'equipamentos' && <RenderizarEquipamentos search={search}/>}
                     {abaAtiva === 'recibos' && <GerarRecibos />}
                     {/*{abaAtiva === 'contador' && <RenderizarContador />}*/}

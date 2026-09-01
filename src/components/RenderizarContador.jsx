@@ -47,19 +47,17 @@ function RenderizarContador() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-
-            // 1. Verifica o tipo de conteúdo antes de ler como JSON
+            
             const contentType = response.headers.get("content-type");
             let data = {};
 
             if (contentType && contentType.includes("application/json")) {
                 data = await response.json();
             } else {
-                // Se não for JSON, lê como texto para descobrir o que o servidor mandou
                 const textoErro = await response.text();
                 console.error("Resposta não-JSON do servidor:", textoErro);
                 alert(`Erro no servidor (Status ${response.status}). Verifique o console.`);
-                return; // Interrompe a execução
+                return; 
             }
 
             if (response.ok) {
@@ -81,10 +79,7 @@ function RenderizarContador() {
 
     return (
         <>
-            {/* CORREÇÃO: Passando apenas a referência da função sem colocar parênteses () */}
             <form onSubmit={enviarDados} className="flex-col" style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
-
-                {/* CORREÇÃO EM TODOS OS INPUTS: Adicionado o atributo name correspondente ao estado */}
                 <div>
                     <input type="number" name="CODIGO_CLIENTE" placeholder="Código do Cliente" value={form.CODIGO_CLIENTE} onChange={handleInputChange} required />
                 </div>

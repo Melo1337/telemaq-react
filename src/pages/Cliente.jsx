@@ -41,32 +41,39 @@ function Cliente() {
     }, []);
 
     console.log(equipamentosReduce)
-    
+
 
     return (
         <>
             <Header />
-            <div className="w-3/4 flex justify-center">
+            <div className="w-[1200px] flex flex-col items-center">
+                <button className="w-full" onClick={() => navigate(-1)}>Voltar</button>
                 {cliente ? (
-                    <div className="w-3/4 flex justify-center">
-                        <div>
-                            <p>Codigo: {cliente.codigo}</p>
-                            <p>Nome: {cliente.nome}</p>
-                            <p>telefone: {cliente.telefone}</p>
-                            <p>telef_contato: {cliente.telef_contato}</p>
-                            <p>contato: {cliente.contato}</p>
-                            <p>cnpj_cpf: {cliente.cnpj_cpf}</p>
-                            <p>inscr_ident: {cliente.inscr_ident}</p>
-                            <p>data_cadastro: {cliente.data_cadastro}</p>
-                            <p>filiacao: {cliente.filiacao}</p>
-                            <p>e_mail1: {cliente.e_mail1}</p>
-                            <p>e_mail2: {cliente.e_mail2}</p></div>
-                        <div>
-                            <p>Rua: {cliente.endereco}</p>
-                            <p>bairro: {cliente.bairro}</p>
-                            <p>cidade: {cliente.cidade}</p>
-                            <p>uf: {cliente.uf}</p>
-                            <p>cep: {cliente.cep}</p>
+                    <div className="flex flex-col items-center justify-center bg-gray-100 p-8 rounded-md my-10 shadow-xl">
+                        <div className="*:mb-5 w-full">
+                            <div className="*:text-2xl flex content-center *:font-bold">
+                                <p className="mr-3 text-blue-500">{cliente.codigo}.</p>
+                                <p>{cliente.nome}</p>
+                            </div>
+                            <div className="flex w-full ">
+                                <div>
+                                    <p><strong>Telefone:</strong> {cliente.telefone}</p>
+                                    <p><strong>CNPJ/CPF:</strong> {cliente.cnpj_cpf}</p>
+                                    <p><strong>Inscrição/Identidade:</strong> {cliente.inscr_ident}</p>
+                                </div>
+                                <div>
+                                    <p><strong>Data de cadastro:</strong> {cliente.data_cadastro}</p>
+                                    <p><strong>Filiação:</strong> {(cliente.filiacao === null ? "Sem filiação" : cliente.filiacao)}</p>
+                                    <p><strong>Email:</strong> {cliente.e_mail1}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex *:mr-3">
+                            <p>Rua: {cliente.endereco} </p>
+                            <p>bairro: {cliente.bairro} </p>
+                            <p>cidade: {cliente.cidade} </p>
+                            <p>uf: {cliente.uf} </p>
+                            <p>cep: {cliente.cep} </p>
                         </div>
                     </div>
                 ) : (
@@ -74,17 +81,22 @@ function Cliente() {
                 )}
 
                 {equipamentosReduce ? (
-                    <div>
-                    {equipamentosReduce && (Object.entries(equipamentosReduce).map(([setor, arraySetor])=>(
-                        <div key={setor}>
-                            <p>Setor: {setor}</p>
-                            {arraySetor.map((equipamento)=>(
-                                <p>{equipamento.n_serie}</p>
-                            ))}
-                        </div>
-                    )))}
-                </div>
-            ) : <p>Nao foi encontrado impressoras!</p>}
+                    <div className="w-full">
+                        {equipamentosReduce && (Object.entries(equipamentosReduce).map(([setor, arraySetor]) => (
+                            <div className="mb-12">
+                                <p className="font-bold">{setor}</p>
+                                {arraySetor.map((equip) => (
+                                    <div key={equip.codigo || equip.n_serie} className="flex bg-gray-200 rounded-md p-4 mb-4 w-1/2 *:ms-4">
+                                        <p className="text-blue-500 font-bold">{equip.codigo}.</p>
+                                        <p>{equip.marca}</p>
+                                        <p>{equip.modelo}</p>
+                                        <p><strong>N° serie: </strong>{equip.n_serie}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )))}
+                    </div>
+                ) : <p>Nao foi encontrado impressoras!</p>}
             </div>
         </>
     )
