@@ -49,7 +49,7 @@ const Chamados = () => {
         <>
             <Header />
             <section className="flex flex-col items-center">
-                <div className="tables flex *:flex *:flex-col *:items-center *:p-8 *:border-2 *:border-black-900 *:rounded-md *:m-8 *:cursor-pointer">
+                <div className="grid grid-cols-2 grid-rows-2 gap-4 tables ms:mb-8 sm:flex *:flex *:flex-col *:items-center *:p-4 sm:*:p-8 *:border-2 *:border-black-900 *:rounded-md sm:*:m-8 *:cursor-pointer">
                     <div onClick={() => alternarAba('chamados')}>
                         <h1>Chamados</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
