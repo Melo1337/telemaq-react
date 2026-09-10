@@ -20,7 +20,7 @@ const RenderizarChamados = () => {
     }, [])
 
     return Object.entries(repositoryChamados).map(([chave, chamado]) => (
-        <div key={chave} className="mb-4 border-2 border-gray-300 rounded-md p-8 md:m-10 w-5/6">
+        <div key={chave} className="mb-4 border-2 border-gray-300 rounded-md p-4 md:p-8 md:m-10 md:w-2/3 w-full">
             <div className="flex justify-between">
                 <p><strong>O.S. Número </strong>{chamado.codigo}</p>
                 <p><strong>Data: </strong>{chamado.data_entrada?.split('T')[0].split('-').reverse().join('/')}</p>
@@ -87,12 +87,11 @@ const RenderizarEquipamentos = ({ search }) => {
     }
 
     return equipFiltrados.map((equip) => (
-        <div key={equip.codigo || equip.n_serie} className="flex items-center space-evenly bg-gray-200 rounded-md p-4 mb-4 w-4/5 ">
-            <p className="text-blue-500 font-bold">{equip.codigo}.</p>
-            <p className="ms-4"><strong>descrição: </strong>{equip.descricao}</p>
-            <p className="ms-4"><strong>marca: </strong>{equip.marca}</p>
-            <p className="ms-4"><strong>modelo: </strong>{equip.modelo}</p>
-            <p className="ms-4"><strong>n_serie: </strong>{equip.n_serie}</p>
+        <div key={equip.codigo || equip.n_serie} className="md:flex md:w-2/3 w-full gap-4 bg-gray-200 rounded-md p-4 mb-4 md:*:w-1/4">
+            <p><strong className="text-blue-500 font-bold mr-2">{`${equip.codigo}.`}</strong>{equip.descricao}</p>
+            <p><strong>Marca: </strong>{equip.marca}</p>
+            <p><strong>Modelo: </strong>{equip.modelo}</p>
+            <p><strong>N° de Série: </strong>{equip.n_serie}</p>
         </div>
     ));
 };
@@ -104,6 +103,7 @@ const GerarRecibos = () => {
     const [inputNumeroNota, setNumeroNota] = useState("");
     const [codigoCliente, setCodigoCliente] = useState("");
     const [nomeCliente, setNomeCliente] = useState("");
+    const [setor, setInputSetor] = useState("");
 
     const dataHoje = new Date();
     const data = dataHoje.toLocaleDateString('pt-BR');
@@ -183,7 +183,7 @@ const GerarRecibos = () => {
                     <table className="table-fixed w-full border-2 border-gray-400 *:border-gray-400 *:border-2">
                         <tbody>
                             <tr className="font-bold text-xl border-2 border-gray-400">
-                                <td colSpan="2">{codigoCliente === "94" ? "verificar" : `${cliente.nome}`}</td>
+                                <td colSpan="2">{codigoCliente === "94" ? `${cliente.nome} - ${setor}` : `${cliente.nome}`}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -199,17 +199,18 @@ const GerarRecibos = () => {
                             </tr>
                         </tbody>
                     </table>
-                );  
+                );
             }
         }
     };
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <form onSubmit={handleInserirCliente} className="*:p-2 *:radious- *:border *:border-gray-500">
-                <input className="w-48 mr-2" placeholder="Codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)} />
-                <input className="w-48 mr-2" placeholder="Valor da nota" value={inputValor} onChange={(e) => setInputValor(e.target.value)} />
-                <input className="w-48 mr-2" placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
+            <form onSubmit={handleInserirCliente} className="*:p-2 *:radious- *:border *:border-gray-500 *:mx-2">
+                <input placeholder="Codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)} />
+                <input placeholder="Valor da nota" value={inputValor} onChange={(e) => setInputValor(e.target.value)} />
+                <input placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
+                {codigoCliente === "94" ? <input placeholder="Escreva o setor" value={setor} onChange={(e) => setInputSetor(e.target.value)} /> : ""}
                 <button type="submit">Inserir</button>
             </form>
 
@@ -269,4 +270,4 @@ const GerarRecibos = () => {
     );
 };
 
-export { GerarRecibos , RenderizarEquipamentos, RenderizarChamados};
+export { GerarRecibos, RenderizarEquipamentos, RenderizarChamados };

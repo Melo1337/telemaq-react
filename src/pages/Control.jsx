@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./../components/Header/Header";
 import axios from "axios";
-import {RenderizarChamados, RenderizarEquipamentos, GerarRecibos} from '../components/AdmComponents'
+import { RenderizarChamados, RenderizarEquipamentos, GerarRecibos } from '../components/AdmComponents'
 import RenderizarClientes from '../components/renderizarClientes'
 
 const Chamados = () => {
@@ -48,24 +48,21 @@ const Chamados = () => {
     return (
         <>
             <Header />
-            <section className="flex flex-col items-center">
-                <div className="grid grid-cols-2 grid-rows-2 gap-4 tables ms:mb-8 sm:flex *:flex *:flex-col *:items-center *:p-4 sm:*:p-8 *:border-2 *:border-black-900 *:rounded-md sm:*:m-8 *:cursor-pointer">
+            <section className="flex flex-col items-center w-11/12">
+                <div className="w-full flex justify-between md:justify-center mb-6 md:my-8 *:md:mx-8 *:content-center *:text-center *:p-4 *:border-2 *:border-black-900 *:rounded-md *:cursor-pointer *:w-32">
                     <div onClick={() => alternarAba('chamados')}>
                         <h1>Chamados</h1>
-                        <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
                     <div onClick={() => alternarAba('clientes')}>
                         <h1>Clientes</h1>
-                        <i className="fa-solid fa-user"></i>
                     </div>
                     <div onClick={() => alternarAba('equipamentos')}>
                         <h1>Equipamentos</h1>
-                        <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <div onClick={() => alternarAba('recibos')}>
+                    <div className="hidden md:flex" onClick={() => alternarAba('recibos')}>
                         <h1>Recibos Locação</h1>
-                        <i className="fa-solid fa-screwdriver-wrench"></i>
                     </div>
+
                     {/*<div onClick={() => alternarAba('contador')}>
                         <h1>Contadores</h1>
                         <i className="fa-solid fa-screwdriver-wrench"></i>
@@ -85,7 +82,7 @@ const Chamados = () => {
 
                     {abaAtiva === 'chamados' && <RenderizarChamados />}
                     {abaAtiva === 'clientes' && <RenderizarClientes search={search} />}
-                    {abaAtiva === 'equipamentos' && <RenderizarEquipamentos search={search}/>}
+                    {abaAtiva === 'equipamentos' && <RenderizarEquipamentos search={search} />}
                     {abaAtiva === 'recibos' && <GerarRecibos />}
                     {/*{abaAtiva === 'contador' && <RenderizarContador />}*/}
                 </div>
