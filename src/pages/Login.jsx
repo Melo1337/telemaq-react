@@ -14,7 +14,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://vicarly-undeprived-keira.ngrok-free.dev/api/login', {
+      const response = await axios.post('http://18.231.153.58:3001/login', {
         email: email,
         senha: senha
       });
@@ -30,7 +30,7 @@ function Login() {
           alert(`Erro no servidor: Código ${error.response.status}`);
         }
       } else if (error.request) {
-        console.error('Falha de rede/Ngrok indisponível:', error.request);
+        console.error('Falha de rede indisponível:', error.request);
         alert('Servidor fora do ar ou inacessível. Verifique sua conexão!');
       } else {
         alert('Erro interno na aplicação.');
