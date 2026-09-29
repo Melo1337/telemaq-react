@@ -1,58 +1,219 @@
 import { useEffect, useState, useRef } from "react";
-import { fetchApi } from "../services/requestApiDataBase";
+import { fetchApi, fetApiClient } from "../services/requestApiDataBase";
 import ObterDadosEndereco from './../components/enderecoCliente'
 import { useReactToPrint } from 'react-to-print';
 
-const RenderizarChamados = () => {
-    const [repositoryChamados, setRepositoryChamados] = useState([]);
+const Chamado = ({ chamado, repositoryCliente }) => {
+    const contentRef = useRef(null);
 
-    useEffect(() => {
-        const inicializarComponente = async () => {
-            try {
-                const dataChamados = await fetchApi('/chamados');
-                setRepositoryChamados(dataChamados);
-            } catch (error) {
-                alert(error)
-            }
-        }
-        inicializarComponente();
+    const reactToPrintFn = useReactToPrint({
+        contentRef,
+        documentTitle: `OS-${chamado.codigo}`,
+    });
 
-    }, [])
+    const clienteEncontrado = repositoryCliente.find(
+        cliente => cliente.codigo === chamado.codigo_cliente
+    );
 
-    return Object.entries(repositoryChamados).map(([chave, chamado]) => (
-        <div key={chave} className="mb-4 border-2 border-gray-300 rounded-md p-4 md:p-8 md:m-10 md:w-2/3 w-full">
-            <div className="flex justify-between">
-                <p><strong>O.S. Número </strong>{chamado.codigo}</p>
-                <p><strong>Data: </strong>{chamado.data_entrada?.split('T')[0].split('-').reverse().join('/')}</p>
-            </div>
-            <hr className="border-none h-[2px] bg-[#bdbdbd] my-5"></hr>
-            <div className="md:flex justify-between">
-                <div>
-                    <p><strong>Cod. Cliente: </strong>{chamado.codigo_cliente}</p>
-                    <p><strong>Cliente: </strong>{chamado.nome_cliente}</p>
-                    <p><strong>solicitante: </strong>{chamado.solicitante}</p>
-                    <p><strong>telefone: </strong>{chamado.telefone}</p>
+    return (
+        <div className="mb-10 flex flex-col content-center">
+            <div ref={contentRef} className="border-2 p-4 w-[800px]">
+                <div className="header flex flex-col items-center">
+                    <h1 className="font-semibold text-xl hidden">
+                        <strong>Telemaq Copiadoras Ltda.</strong>
+                    </h1>
+
+                    <p>
+                        Rua Mariano Procópio, 65, Centro,
+                        Juiz de Fora - MG (32)98419-5001
+                    </p>
                 </div>
-                {chamado.codigo_equipamento === 0 ? (
-                    <div className="printerModel">
-                        <p><strong>Modelo equipamento: </strong>{chamado.nome_equipamento}</p>
+
+                <div className="flex justify-between">
+                    <p>
+                        <strong>Data: </strong>
+                        {chamado.data_entrada
+                            ?.split('T')[0]
+                            .split('-')
+                            .reverse()
+                            .join('/')}
+                    </p>
+
+                    <p>
+                        <strong>O.S. Número: </strong>
+                        {chamado.codigo}
+                    </p>
+                </div>
+
+                <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
+
+                <div>
+                    <div className="flex justify-between">
+
+                        <div>
+                            <p>
+                                <strong>Cliente: </strong>
+                                {chamado.nome_cliente}
+                            </p>
+
+                            <p>
+                                <strong>Solicitante: </strong>
+                                {chamado.solicitante}
+                            </p>
+                        </div>
+
+                        {clienteEncontrado && (
+                            <div>
+                                <p>
+                                    <strong>Telefone: </strong>
+                                    {clienteEncontrado.telefone}
+                                </p>
+
+                                <p>
+                                    <strong>CPF/CNPJ: </strong>
+                                    {clienteEncontrado.cnpj_cpf}
+                                </p>
+                            </div>
+                        )}
+
                     </div>
-                ) : (
+
+                    <ObterDadosEndereco
+                        codigoCliente={chamado.codigo_cliente}
+                    />
+                </div>
+
+                <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
+
+                {chamado.codigo_equipamento === 0 ? (
+
                     <div className="printerModel">
-                        <p><strong>Cod. equipamento: </strong>{chamado.codigo_equipamento}</p>
-                        <p><strong>Nome equipamento: </strong>{chamado.nome_equipamento}</p>
-                        <p><strong>Marca: </strong>{chamado.marca_equipamento}</p>
-                        <p><strong>Modelo equipamento: </strong>{chamado.modelo_equipamento}</p>
-                        <p><strong>n_serie_equipamento: </strong>{chamado.n_serie_equipamento}</p>
+                        <p>
+                            <strong>Modelo equipamento: </strong>
+                            {chamado.nome_equipamento}
+                        </p>
+                    </div>
+
+                ) : (
+
+                    <div className="printerModel flex justify-between">
+
+                        <p>
+                            <strong>Cod. equipamento: </strong>
+                            {chamado.codigo_equipamento}
+                        </p>
+
+                        <p>
+                            <strong>Modelo equipamento: </strong>
+                            {chamado.marca_equipamento}{' '}
+                            {chamado.modelo_equipamento}
+                        </p>
+
+                        <p>
+                            <strong>N° Série: </strong>
+                            {chamado.n_serie_equipamento}
+                        </p>
+
                     </div>
                 )}
+
+                <p>
+                    <strong>Diagnóstico: </strong>
+                    {chamado.diagnostico}
+                </p>
+
+                <p>
+                    <strong>Conclusão: </strong>
+                    {chamado.conclusao}
+                </p>
+
+                <div className="flex justify-between">
+                    <strong>
+                        <p>Data de conclusão:</p>
+                    </strong>
+
+                    <p>
+                        Ass: _________________________________________
+                    </p>
+                </div>
+
+                <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
+
+                <div>
+                    <p className="font-semibold text-xs text-center">
+                        AUTORIZO A VENDA DO EQUIPAMENTO 90 DIAS APÓS
+                        COMUNICADO CONSERTO, PARA COBRIR DESPESAS
+                    </p>
+
+                    <div className="flex justify-between mt-2 mb-20 *:underline *:font-bold">
+                        <p>
+                            __________________________PRODUTOS / SERVIÇOS__________________________
+                        </p>
+
+                        <p>__QUANTIDADE__</p>
+
+                        <p>___VALOR___</p>
+                    </div>
+
+                    <p className="font-bold float-end">
+                        TOTAL:________________________
+                    </p>
+                </div>
+
             </div>
-            <hr className="border-none h-[2px] bg-[#bdbdbd] my-5"></hr>
-            <p><strong>Diagnostico: </strong>{chamado.diagnostico}</p>
-            <hr className="border-none h-[2px] bg-[#bdbdbd] my-5"></hr>
-            <ObterDadosEndereco codigoCliente={chamado.codigo_cliente} />
+
+            <button onClick={reactToPrintFn} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-52">Print</button>
+
         </div>
-    ));
+    );
+};
+
+
+const RenderizarChamados = () => {
+
+    const [repositoryChamados, setRepositoryChamados] = useState([]);
+    const [repositoryCliente, setRepositoryClientes] = useState([]);
+
+    useEffect(() => {
+
+        const inicializarComponente = async () => {
+
+            try {
+
+                const dataChamados = await fetchApi('/chamados');
+                setRepositoryChamados(dataChamados);
+
+                const dataCliente = await fetApiClient();
+                setRepositoryClientes(dataCliente);
+
+            } catch (error) {
+
+                alert(error);
+
+            }
+
+        };
+
+        inicializarComponente();
+
+    }, []);
+
+
+    return (
+        <>
+            {Object.entries(repositoryChamados).map(
+                ([chave, chamado]) => (
+
+                    <Chamado
+                        key={chamado.codigo ?? chave}
+                        chamado={chamado}
+                        repositoryCliente={repositoryCliente}
+                    />
+
+                )
+            )}
+        </>
+    );
 };
 
 const RenderizarEquipamentos = ({ search }) => {
