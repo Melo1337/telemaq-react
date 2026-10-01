@@ -16,10 +16,10 @@ const Chamado = ({ chamado, repositoryCliente }) => {
     );
 
     return (
-        <div className="mb-10 flex flex-col content-center">
-            <div ref={contentRef} className="border-2 p-4 w-[800px]">
-                <div className="header flex flex-col items-center">
-                    <h1 className="font-semibold text-xl hidden">
+        <div className="w-full sm:w-[800px]">
+            <div ref={contentRef} className="border-2 p-4">
+                <div className="header md:flex flex-col items-center hidden sm:flex">
+                    <h1 className="font-semibold text-xl">
                         <strong>Telemaq Copiadoras Ltda.</strong>
                     </h1>
 
@@ -48,7 +48,7 @@ const Chamado = ({ chamado, repositoryCliente }) => {
                 <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
 
                 <div>
-                    <div className="flex justify-between">
+                    <div className="sm:flex sm:justify-between">
 
                         <div>
                             <p>
@@ -127,7 +127,7 @@ const Chamado = ({ chamado, repositoryCliente }) => {
                     {chamado.conclusao}
                 </p>
 
-                <div className="flex justify-between">
+                <div className="md:flex justify-between hidden sm:flex">
                     <strong>
                         <p>Data de conclusão:</p>
                     </strong>
@@ -139,13 +139,13 @@ const Chamado = ({ chamado, repositoryCliente }) => {
 
                 <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
 
-                <div>
+                <div className="hidden sm:flex">
                     <p className="font-semibold text-xs text-center">
                         AUTORIZO A VENDA DO EQUIPAMENTO 90 DIAS APÓS
                         COMUNICADO CONSERTO, PARA COBRIR DESPESAS
                     </p>
 
-                    <div className="flex justify-between mt-2 mb-20 *:underline *:font-bold">
+                    <div className="flex justify-between mt-2 mb-20 *:underline *:font-bold sm:hidden">
                         <p>
                             __________________________PRODUTOS / SERVIÇOS__________________________
                         </p>
