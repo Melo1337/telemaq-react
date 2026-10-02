@@ -16,9 +16,9 @@ const Chamado = ({ chamado, repositoryCliente }) => {
     );
 
     return (
-        <div className="w-full sm:w-[800px]">
-            <div ref={contentRef} className="border-2 p-4">
-                <div className="header md:flex flex-col items-center hidden sm:flex">
+        <div className="w-full md:w-[800px] flex flex-col items-center">
+            <div ref={contentRef} className="border-2 p-4 ">
+                <div className="header flex-col items-center hidden sm:flex">
                     <h1 className="font-semibold text-xl">
                         <strong>Telemaq Copiadoras Ltda.</strong>
                     </h1>
@@ -78,9 +78,7 @@ const Chamado = ({ chamado, repositoryCliente }) => {
 
                     </div>
 
-                    <ObterDadosEndereco
-                        codigoCliente={chamado.codigo_cliente}
-                    />
+                    <ObterDadosEndereco codigoCliente={chamado.codigo_cliente}/>
                 </div>
 
                 <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
@@ -96,15 +94,15 @@ const Chamado = ({ chamado, repositoryCliente }) => {
 
                 ) : (
 
-                    <div className="printerModel flex justify-between">
+                    <div className="printerModel block justify-between ms:flex">
 
                         <p>
-                            <strong>Cod. equipamento: </strong>
+                            <strong>Cod. equip: </strong>
                             {chamado.codigo_equipamento}
                         </p>
 
                         <p>
-                            <strong>Modelo equipamento: </strong>
+                            <strong>Modelo equip: </strong>
                             {chamado.marca_equipamento}{' '}
                             {chamado.modelo_equipamento}
                         </p>
@@ -122,47 +120,47 @@ const Chamado = ({ chamado, repositoryCliente }) => {
                     {chamado.diagnostico}
                 </p>
 
-                <p>
-                    <strong>Conclusão: </strong>
-                    {chamado.conclusao}
-                </p>
-
-                <div className="md:flex justify-between hidden sm:flex">
-                    <strong>
-                        <p>Data de conclusão:</p>
-                    </strong>
-
+                <div className="hidden sm:flex sm:flex-col">
                     <p>
-                        Ass: _________________________________________
+                        <strong>Conclusão: </strong>
+                        {chamado.conclusao}
                     </p>
+
+                    <div className="justify-between sm:flex">
+                        <strong>
+                            <p>Data de conclusão:</p>
+                        </strong>
+
+                        <p>Ass: _________________________________________</p>
+                    </div>
                 </div>
 
-                <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
 
-                <div className="hidden sm:flex">
+                <div className="hidden sm:block">
+                    <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
                     <p className="font-semibold text-xs text-center">
                         AUTORIZO A VENDA DO EQUIPAMENTO 90 DIAS APÓS
                         COMUNICADO CONSERTO, PARA COBRIR DESPESAS
                     </p>
 
-                    <div className="flex justify-between mt-2 mb-20 *:underline *:font-bold sm:hidden">
-                        <p>
-                            __________________________PRODUTOS / SERVIÇOS__________________________
-                        </p>
+                    <div className="flex justify-between mt-2 mb-20 *:underline *:font-bold xl:">
+                        <p>________________________PRODUTOS / SERVIÇOS________________________</p>
 
-                        <p>__QUANTIDADE__</p>
+                        <p>QUANTIDADE</p>
 
-                        <p>___VALOR___</p>
+                        <p>VALOR</p>
                     </div>
 
-                    <p className="font-bold float-end">
-                        TOTAL:________________________
-                    </p>
+                    <p className="font-bold float-end">TOTAL:________________________</p>
                 </div>
 
             </div>
 
-            <button onClick={reactToPrintFn} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-52">Print</button>
+            <div className="flex justify-between w-full my-2 *:text-white *:px-4 *:py-1 *:rounded *:w-28">
+                <button className="bg-green-100">Atender</button>
+                <button onClick={reactToPrintFn} className="bg-blue-500 rounded hover:bg-blue-700">Print</button>
+                <button className="bg-red-100">Concluído</button>
+            </div>
 
         </div>
     );
