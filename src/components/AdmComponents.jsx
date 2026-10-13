@@ -3,7 +3,7 @@ import { fetchApi, fetApiClient } from "../services/requestApiDataBase";
 import ObterDadosEndereco from './../components/enderecoCliente'
 import { useReactToPrint } from 'react-to-print';
 
-const Chamado = ({ chamado, repositoryCliente }) => {
+const Chamado = ({ chamado, repositoryCliente, setRepositoryChamados }) => {
     const contentRef = useRef(null);
 
     const reactToPrintFn = useReactToPrint({
@@ -15,9 +15,41 @@ const Chamado = ({ chamado, repositoryCliente }) => {
         cliente => cliente.codigo === chamado.codigo_cliente
     );
 
+    const changeChamado = async (codigo, status) => {
+        
+        if (status === "CONFIRMADO") {
+            const conclusao = prompt("Qual serviço foi realizado?")
+            const retirado_por = prompt("Qual tecnico?")
+            const obs = prompt("Escreva sua observação!")
+            const data_conclusa = new Date().toLocaleDateString('pt-BR');
+        }
+        
+        try {
+
+            const response = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/chamados/${status}/${codigo}`, {
+                method: 'PUT'
+            }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+
+            setRepositoryChamados(prev => prev.filter(chamado => chamado.codigo !== codigo));
+
+            console.log('Chamado concluído:', response);
+
+        } catch (error) {
+
+            console.error('Erro ao concluir chamado:', error);
+
+            alert('Não foi possível concluir o chamado.');
+        }
+    };
+
     return (
         <div className="w-full md:w-[800px] flex flex-col items-center">
-            <div ref={contentRef} className="border-2 p-4 ">
+            <div ref={contentRef} className="border-2 p-4 sm:w-full">
                 <div className="header flex-col items-center hidden sm:flex">
                     <h1 className="font-semibold text-xl">
                         <strong>Telemaq Copiadoras Ltda.</strong>
@@ -78,7 +110,7 @@ const Chamado = ({ chamado, repositoryCliente }) => {
 
                     </div>
 
-                    <ObterDadosEndereco codigoCliente={chamado.codigo_cliente}/>
+                    <ObterDadosEndereco codigoCliente={chamado.codigo_cliente} />
                 </div>
 
                 <hr className="border-none h-[2px] bg-[#bdbdbd] my-2" />
@@ -157,9 +189,9 @@ const Chamado = ({ chamado, repositoryCliente }) => {
             </div>
 
             <div className="flex justify-between w-full my-2 *:text-white *:px-4 *:py-1 *:rounded *:w-28">
-                <button className="bg-green-100">Atender</button>
+                {chamado.status === "ORÇAMENTO" ? <button className="bg-green-600" onClick={() => changeChamado(chamado.codigo, "APROVADO")}>Atender</button> : <button className="bg-green-100">Atender</button>}
                 <button onClick={reactToPrintFn} className="bg-blue-500 rounded hover:bg-blue-700">Print</button>
-                <button className="bg-red-100">Concluído</button>
+                <button className="bg-red-600" onClick={() => changeChamado(chamado.codigo, "CONFIRMADO")}>Concluído</button>
             </div>
 
         </div>
@@ -171,6 +203,9 @@ const RenderizarChamados = () => {
 
     const [repositoryChamados, setRepositoryChamados] = useState([]);
     const [repositoryCliente, setRepositoryClientes] = useState([]);
+    const [statusAtual, setStatusAtual] = useState('ORÇAMENTO');
+
+    const chamadosFiltrados = repositoryChamados.filter(chamado => chamado.status === statusAtual)
 
     useEffect(() => {
 
@@ -199,15 +234,13 @@ const RenderizarChamados = () => {
 
     return (
         <>
-            {Object.entries(repositoryChamados).map(
+            <div>
+                <button onClick={() => setStatusAtual('ORÇAMENTO')}>Atender</button>
+                <button onClick={() => setStatusAtual('APROVADO')}>Em atendimento</button>
+            </div>
+            {Object.entries(chamadosFiltrados).map(
                 ([chave, chamado]) => (
-
-                    <Chamado
-                        key={chamado.codigo ?? chave}
-                        chamado={chamado}
-                        repositoryCliente={repositoryCliente}
-                    />
-
+                    <Chamado key={chamado.codigo ?? chave} chamado={chamado} repositoryCliente={repositoryCliente} setRepositoryChamados={setRepositoryChamados} />
                 )
             )}
         </>
