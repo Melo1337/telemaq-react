@@ -14,7 +14,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://18.231.153.58:3001/login', {
+      const response = await axios.post('https://vicarly-undeprived-keira.ngrok-free.dev/api/login', {
         email: email,
         senha: senha
       });

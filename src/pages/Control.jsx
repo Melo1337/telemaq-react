@@ -18,7 +18,7 @@ const Chamados = () => {
                 return;
             }
             try {
-                const response = await axios.get("http://18.231.153.58:3001/validation", {
+                const response = await axios.get("https://vicarly-undeprived-keira.ngrok-free.dev/api/validation", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     }

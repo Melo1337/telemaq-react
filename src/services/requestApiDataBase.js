@@ -5,7 +5,7 @@ export const fetchApi = async (value) => {
     const token = localStorage.getItem("token");
 
     try {
-        const resp = await fetch(`http://18.231.153.58:3001${value}`, {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev${value}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const fetchApi = async (value) => {
 
 export const repositoryClientes = async () => {
     try {
-        const resp = await fetch(`http://18.231.153.58:3001/tables/clientes`, {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/tables/clientes`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const repositoryClientes = async () => {
 
 export const repositoryEquipamentos = async () => {
     try {
-        const resp = await fetch(`http://18.231.153.58:3001/tables/equipamentos`, {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/tables/equipamentos`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
