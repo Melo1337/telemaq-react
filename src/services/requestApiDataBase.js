@@ -5,7 +5,7 @@ export const fetchApi = async (value) => {
     const token = localStorage.getItem("token");
 
     try {
-        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev${value}`, {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api${value}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

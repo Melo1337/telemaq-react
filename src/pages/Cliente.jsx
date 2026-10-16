@@ -46,16 +46,16 @@ function Cliente() {
     return (
         <>
             <Header />
-            <div className="w-[1200px] flex flex-col items-center">
+            <div>
                 <button className="w-full" onClick={() => navigate(-1)}>Voltar</button>
                 {cliente ? (
-                    <div className="flex flex-col items-center justify-center bg-gray-100 p-8 rounded-md my-10 shadow-xl">
-                        <div className="*:mb-5 w-full">
+                    <div className="bg-gray-100 p-8 rounded-md my-10 shadow-xl">
+                        <div className="*:mb-5">
                             <div className="*:text-2xl flex content-center *:font-bold">
                                 <p className="mr-3 text-blue-500">{cliente.codigo}.</p>
                                 <p>{cliente.nome}</p>
                             </div>
-                            <div className="flex w-full ">
+                            <div className="">
                                 <div>
                                     <p><strong>Telefone:</strong> {cliente.telefone}</p>
                                     <p><strong>CNPJ/CPF:</strong> {cliente.cnpj_cpf}</p>
@@ -69,11 +69,7 @@ function Cliente() {
                             </div>
                         </div>
                         <div className="flex *:mr-3">
-                            <p>Rua: {cliente.endereco} </p>
-                            <p>bairro: {cliente.bairro} </p>
-                            <p>cidade: {cliente.cidade} </p>
-                            <p>uf: {cliente.uf} </p>
-                            <p>cep: {cliente.cep} </p>
+                            <p><strong>Endereço:</strong></p><p>{cliente.endereco} {cliente.bairro} {cliente.cidade} {cliente.uf} {cliente.cep}</p>
                         </div>
                     </div>
                 ) : (
@@ -86,7 +82,7 @@ function Cliente() {
                             <div className="mb-12">
                                 <p className="font-bold">{setor}</p>
                                 {arraySetor.map((equip) => (
-                                    <div key={equip.codigo || equip.n_serie} className="flex bg-gray-200 rounded-md p-4 mb-4 w-1/2 *:ms-4">
+                                    <div key={equip.codigo || equip.n_serie} className="flex bg-gray-200 rounded-md p-4 mb-4 *:ms-4">
                                         <p className="text-blue-500 font-bold">{equip.codigo}.</p>
                                         <p>{equip.marca}</p>
                                         <p>{equip.modelo}</p>
