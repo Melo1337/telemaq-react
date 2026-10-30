@@ -118,16 +118,9 @@ const GerarRecibos = () => {
             } catch (error) {
                 alert(error);
             }
-
-            try {
-                const response = await fetch("https://vicarly-undeprived-keira.ngrok-free.dev/api/counter")
-                const dados = await response.json()
-                setNumeroNota(dados)
-            } catch {
-
-            }
         };
         inicializarComponente();
+        getCounter()
     }, []);
 
     useEffect(() => {
@@ -157,6 +150,16 @@ const GerarRecibos = () => {
         }
     });
 
+    const getCounter = async () => {
+        try {
+            const response = await fetch("https://vicarly-undeprived-keira.ngrok-free.dev/api/counter")
+            const dados = await response.json()
+            setNumeroNota(dados)
+        } catch (error) {
+            alert(error);
+        }
+    }
+
     function getPrimeiroDiaUtil(ano, mes) {
         let data = new Date(ano, mes, 1);
         const diaDaSemana = data.getDay();
@@ -172,7 +175,7 @@ const GerarRecibos = () => {
 
     const updateCounter = async () => {
 
-        const aceitou = window.confirm("Você deseja atualizar o contador?");
+        const aceitou = window.confirm("Você deseja atualizar o numero da nota?");
 
         if (aceitou) {
             try {
@@ -183,10 +186,11 @@ const GerarRecibos = () => {
                 })
 
                 if (!response.ok) {
-                    throw new Error("Erro ao atualizar contador");
+                    throw new Error("Erro ao atualizar Numero da nota");
                 }
 
                 const dados = await response.json();
+                getCounter()
                 return dados.counter;
 
             } catch (error) {
@@ -202,6 +206,10 @@ const GerarRecibos = () => {
         e.preventDefault();
         setCodigoCliente(inputCodigo);
     };
+
+    const updateMouth = () => {
+        return mes + 1
+    }
 
     const renderSelecterClient = () => {
         const listaClientes = repositoryClientes.SEM_GRUPO || repositoryClientes;
@@ -284,7 +292,7 @@ const GerarRecibos = () => {
                 <p className="text-red-700 text-xl text-center font-bold">Recibo válido com comprovação de pagamento</p>
                 <div className="flex justify-between *:font-bold *:text-xl">
                     <p>Emissão: {getPrimeiroDiaUtil(ano, mes).toLocaleDateString('pt-BR')}</p>
-                    <p>Nº: {inputNumeroNota ? inputNumeroNota : "00000"}</p>
+                    <p>Nº: {inputNumeroNota}</p>
                 </div>
                 <div>
                     {renderSelecterClient()}
@@ -316,7 +324,7 @@ const GerarRecibos = () => {
             <div>
                 <div>
                     <label htmlFor="">N° NOTA:</label>
-                <input className="p-2 radious- border border-gray-500 mx-2" placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
+                    <input className="p-2 radious- border border-gray-500 mx-2" placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
                 </div>
                 <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500 m-8 w-56">imprimir</button>
             </div>
