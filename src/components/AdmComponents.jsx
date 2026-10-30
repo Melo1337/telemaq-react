@@ -100,16 +100,15 @@ const GerarRecibos = () => {
     const [repositoryClientes, setRepositoryClientes] = useState([]);
     const [inputCodigo, setInputCodigo] = useState("");
     const [inputValor, setInputValor] = useState("");
-    const [inputNumeroNota, setNumeroNota] = useState("");
+    const [inputNumeroNota, setNumeroNota] = useState(0);
     const [codigoCliente, setCodigoCliente] = useState("");
     const [nomeCliente, setNomeCliente] = useState("");
     const [setor, setInputSetor] = useState("");
 
-    const dataHoje = new Date();
-    const data = dataHoje.toLocaleDateString('pt-BR');
-    const diaAtual = dataHoje.getDate();
-    const mesAtual = dataHoje.getMonth() + 1;
-    const anoAtual = dataHoje.getFullYear();
+    const dataAtual = new Date();
+
+    const ano = dataAtual.getFullYear();
+    const mes = dataAtual.getMonth();
 
     useEffect(() => {
         const inicializarComponente = async () => {
@@ -118,6 +117,14 @@ const GerarRecibos = () => {
                 setRepositoryClientes(dataClientes.SEM_GRUPO || dataClientes);
             } catch (error) {
                 alert(error);
+            }
+
+            try {
+                const response = await fetch("https://vicarly-undeprived-keira.ngrok-free.dev/api/counter")
+                const dados = await response.json()
+                setNumeroNota(dados)
+            } catch {
+
             }
         };
         inicializarComponente();
@@ -133,7 +140,7 @@ const GerarRecibos = () => {
         if (listaClientes && listaClientes.length > 0) {
             const cliente = listaClientes.find(c => Number(c.codigo) === Number(codigoCliente));
             if (cliente) {
-                setNomeCliente(codigoCliente === "94" ? "verificar" : cliente.nome);
+                setNomeCliente(codigoCliente === "94" ? cliente.nome : cliente.nome);
             } else {
                 setNomeCliente("Cliente Invalido");
             }
@@ -144,8 +151,52 @@ const GerarRecibos = () => {
 
     const handlePrint = useReactToPrint({
         contentRef: contentDocument,
-        documentTitle: codigoCliente && nomeCliente ? `${nomeCliente}` : "sem nome",
+        documentTitle: codigoCliente && nomeCliente ? `${inputNumeroNota} - ${nomeCliente}` : "sem nome",
+        onAfterPrint: () => {
+            updateCounter()
+        }
     });
+
+    function getPrimeiroDiaUtil(ano, mes) {
+        let data = new Date(ano, mes, 1);
+        const diaDaSemana = data.getDay();
+
+        if (diaDaSemana === 6) {
+            data.setDate(data.getDate() + 2);
+        } else if (diaDaSemana === 0) {
+            data.setDate(data.getDate() + 1);
+        }
+
+        return data;
+    }
+
+    const updateCounter = async () => {
+
+        const aceitou = window.confirm("Você deseja atualizar o contador?");
+
+        if (aceitou) {
+            try {
+                const response = await fetch("https://vicarly-undeprived-keira.ngrok-free.dev/api/counter", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({})
+                })
+
+                if (!response.ok) {
+                    throw new Error("Erro ao atualizar contador");
+                }
+
+                const dados = await response.json();
+                return dados.counter;
+
+            } catch (error) {
+                console.error("Erro ao atualizar contador:", error);
+                throw error;
+            }
+        } else {
+            alert('Contador nao atualizado!')
+        }
+    }
 
     const handleInserirCliente = (e) => {
         e.preventDefault();
@@ -209,7 +260,6 @@ const GerarRecibos = () => {
             <form onSubmit={handleInserirCliente} className="*:p-2 *:radious- *:border *:border-gray-500 *:mx-2">
                 <input placeholder="Codigo do cliente" value={inputCodigo} onChange={(e) => setInputCodigo(e.target.value)} />
                 <input placeholder="Valor da nota" value={inputValor} onChange={(e) => setInputValor(e.target.value)} />
-                <input placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
                 {codigoCliente === "94" ? <input placeholder="Escreva o setor" value={setor} onChange={(e) => setInputSetor(e.target.value)} /> : ""}
                 <button type="submit">Inserir</button>
             </form>
@@ -233,7 +283,7 @@ const GerarRecibos = () => {
                 <p className="font-semibold text-red-700 text-sm text-center">DISPENSADA DE EMISSÃO DE NOTA FISCAL DE SERVIÇO CONFORME LEI COMPLEMENTAR 116 DE 31/07/2003</p>
                 <p className="text-red-700 text-xl text-center font-bold">Recibo válido com comprovação de pagamento</p>
                 <div className="flex justify-between *:font-bold *:text-xl">
-                    <p>Emissão: {(Number(diaAtual) > 25) ? `${"1"}/${mesAtual + 1}/${anoAtual}` : data}</p>
+                    <p>Emissão: {getPrimeiroDiaUtil(ano, mes).toLocaleDateString('pt-BR')}</p>
                     <p>Nº: {inputNumeroNota ? inputNumeroNota : "00000"}</p>
                 </div>
                 <div>
@@ -264,6 +314,10 @@ const GerarRecibos = () => {
                 <p className="float-right font-bold underline text-xl">Total deste recibo: {inputValor ? (`R$ ${inputValor}`) : "R$ 0,00"}</p>
             </div>
             <div>
+                <div>
+                    <label htmlFor="">N° NOTA:</label>
+                <input className="p-2 radious- border border-gray-500 mx-2" placeholder="Numero da nota" value={inputNumeroNota} onChange={(e) => setNumeroNota(e.target.value)} />
+                </div>
                 <button onClick={handlePrint} className="bg-blue-200 p-2 rounded-lg border-2 border-blue-400 bold font-bold text-slate-500 m-8 w-56">imprimir</button>
             </div>
         </div>
