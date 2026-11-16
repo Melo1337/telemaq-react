@@ -5,7 +5,7 @@ import ButtomWhatsapp from '../ButtomWhatsapp/ButtomWhatsapp.js'
 function Body() {
 
     const sectionTitle = 'text-xl font-bold'
-
+    
     return (
         <div className="Body">
             <section id="home" className="hero">
@@ -16,6 +16,8 @@ function Body() {
                 </div>
             </section>
 
+            <Market />
+            
             <section id="servicos" className="services">
                 <div className="container">
                     <h2 className={`section-title ${sectionTitle}`}>Nossos Serviços</h2>
@@ -86,7 +88,6 @@ function Body() {
                 </div>
             </section>
 
-            <Market />
         </div>
 
     );
