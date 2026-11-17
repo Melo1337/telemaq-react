@@ -16,49 +16,57 @@ const Chamado = ({ chamado, repositoryCliente, setRepositoryChamados }) => {
     );
 
     const changeChamado = async (codigo, status) => {
-        
+
         if (status === "CONFIRMADO") {
             const conclusao = prompt("Qual serviço foi realizado?")
+            if (conclusao === null || conclusao.trim() === "") { alert("Operação cancelada ou campo obrigatório não preenchido."); return }
+
             const retirado_por = prompt("Qual tecnico?")
+            if (retirado_por === null || conclusao.trim() === "") { alert("Operação cancelada ou campo obrigatório não preenchido."); return }
+
             const obs = prompt("Escreva sua observação!")
+            if (obs === null || conclusao.trim() === "") { alert("Operação cancelada ou campo obrigatório não preenchido."); return }
+
             const data_conclusa = new Date().toLocaleDateString('pt-BR');
-        }
-        
-        try {
 
-            const response = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/chamados/${status}/${codigo}`, {
-                method: 'PUT'
-            }
-            );
-
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
+            const payload = {
+                status,
+                conclusao,
+                retirado_por,
+                data_conclusa,
+                obs
             }
 
-            setRepositoryChamados(prev => prev.filter(chamado => chamado.codigo !== codigo));
+            try {
 
-            console.log('Chamado concluído:', response);
+                const response = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/chamados/${status}/${codigo}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }
+                );
 
-        } catch (error) {
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
 
-            console.error('Erro ao concluir chamado:', error);
+                setRepositoryChamados(prev => prev.filter(chamado => chamado.codigo !== codigo));
+                console.log('Chamado concluído:', response);
 
-            alert('Não foi possível concluir o chamado.');
-        }
-    };
+            } catch (error) {
+
+                console.error('Erro ao concluir chamado:', error);
+                alert('Não foi possível concluir o chamado.');
+            }
+        };
+    }
 
     return (
         <div className="w-full md:w-[800px] flex flex-col items-center">
             <div ref={contentRef} className="border-2 p-4 sm:w-full">
                 <div className="header flex-col items-center hidden sm:flex">
-                    <h1 className="font-semibold text-xl">
-                        <strong>Telemaq Copiadoras Ltda.</strong>
-                    </h1>
-
-                    <p>
-                        Rua Mariano Procópio, 65, Centro,
-                        Juiz de Fora - MG (32)98419-5001
-                    </p>
+                    <h1 className="font-semibold text-xl"><strong>Telemaq Copiadoras Ltda.</strong></h1>
+                    <p>Rua Mariano Procópio, 65, Centro, Juiz de Fora - MG (32)98419-5001</p>
                 </div>
 
                 <div className="flex justify-between">
@@ -210,21 +218,12 @@ const RenderizarChamados = () => {
     useEffect(() => {
 
         const inicializarComponente = async () => {
-
             try {
-
                 const dataChamados = await fetchApi('/chamados');
                 setRepositoryChamados(dataChamados);
-
-                const dataCliente = await fetApiClient();
-                setRepositoryClientes(dataCliente);
-
             } catch (error) {
-
                 alert(error);
-
             }
-
         };
 
         inicializarComponente();

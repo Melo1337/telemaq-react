@@ -12,7 +12,7 @@ function Market() {
 
     useEffect(() => {
         const getApi = async () => {
-            const data = await fetchApi('filter');
+            const data = await fetchApi('/filter');
             setDados(data);
         };
         getApi();

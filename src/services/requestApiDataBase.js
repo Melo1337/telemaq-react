@@ -1,54 +1,33 @@
 import localProducts from "../data/json/filter.json";
 
-export const fetchApi = async (value, options = {}) => {
+export const fetchApi = async (value) => {
 
     const token = localStorage.getItem("token");
 
     try {
-        const resp = await fetch(
-            `https://vicarly-undeprived-keira.ngrok-free.dev/api${value}`,
-            {
-                method: options.method || 'GET',
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api${value}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : ''
+            },
+        });
 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'ngrok-skip-browser-warning': 'true',
-                    'Authorization': token
-                        ? `Bearer ${token}`
-                        : ''
-                },
-
-                ...options
-            }
-        );
-
-        if (!resp.ok) {
-            const errorText = await resp.text();
-
-            console.error("Erro da API:", resp.status, errorText);
-
-            throw new Error(
-                `API retornou status ${resp.status}`
-            );
+        if (resp.status === 200) {
+            console.log("Dados da API carregados com sucesso!");
+            return await resp.json();
         }
-
-        if (resp.status === 204) {
-            return null;
-        }
-
-        return await resp.json();
-
+        
+        throw new Error("Resposta diferente de 200");
     } catch (err) {
-
-        console.error(`Api indisponivel:`, err);
-
-        throw err;
+        console.error(`Api indisponivel: ${err}`);
+        return localProducts;
     }
 };
 
-export const fetApiClient = async () => {
-        try {
-        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/api/tables/clientes`, {
+export const repositoryClientes = async () => {
+    try {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/tables/clientes`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,10 +39,30 @@ export const fetApiClient = async () => {
             console.log("Dados da API carregados com sucesso!");
             return await resp.json();
         }
-
+        
         throw new Error("Resposta diferente de 200");
     } catch (err) {
         console.error(`Api indisponivel: ${err}`);
-        return localProducts;
+    }
+}
+
+export const repositoryEquipamentos = async () => {
+    try {
+        const resp = await fetch(`https://vicarly-undeprived-keira.ngrok-free.dev/tables/equipamentos`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true',
+            },
+        });
+
+        if (resp.status === 200) {
+            console.log("Dados da API carregados com sucesso!");
+            return await resp.json();
+        }
+        
+        throw new Error("Resposta diferente de 200");
+    } catch (err) {
+        console.error(`Api indisponivel: ${err}`);
     }
 }
